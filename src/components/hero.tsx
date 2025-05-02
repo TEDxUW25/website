@@ -11,12 +11,11 @@ type MouseTrailPoint = {
 
 // reminder to replace w actual image and not link
 const trailImages = [
-    "https://tedxuw2024.netlify.app/static/media/carosel1.90be98a99271b350bb32.jpg", 
-    "https://tedxuw2024.netlify.app/static/media/Carousel2.7c691d976686c515fa33.jpg", 
-    "https://tedxuw2024.netlify.app/static/media/Carousel3.d76dfce7b0f2009fc0ca.jpg",
-    "https://tedxuw2024.netlify.app/static/media/Carousel6.f768dd9cd7989f1b67ad.jpg",
-    "https://tedxuw2024.netlify.app/static/media/Carousel5.aa7359cbf0cadba4e811.jpg",
-    "https://tedxuw2024.netlify.app/static/media/Carousel4.a7c599fd804b24c406b4.jpg",
+    "trail_img/1.jpg", 
+    "trail_img/2.jpg", 
+    "trail_img/3.jpg", 
+    "trail_img/4.jpg", 
+    "trail_img/5.jpg", 
 ];
 
 export default function HeroHome() {

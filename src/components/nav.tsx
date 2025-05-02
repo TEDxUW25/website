@@ -1,3 +1,5 @@
+'use client'
+import { useState } from "react";
 import Link from "next/link";
 
 interface Nav {
@@ -20,26 +22,109 @@ const navItems: Nav[] = [
     path: "/sponsors"},
 ];
 
-
 export default function NavBar() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
-    <div className="flex flex-rows justify-between p-8 sticky top-0 z-10 shadow-sm w-full">
-      <div className="items-start md:gap-12 flex flex-rows">
-      <Link href="/" ><img src = "logo.svg" width = "90px" alt = "logo"/></Link>
-        {navItems.map(n => (
-          <div key = {n.name} className="hover:underline underline-offset-2 transition ease-in-out ">
-          <Link href={n.path} >{n.name}</Link> 
-          </div>
-        ))}  
-      </div>
-      <div className="flex flex-rows gap-8">
-        <Link href="/buy_ticket" >
-          <button className="border rounded-lg border-2 px-4 py-2 hover:bg-[var(--button-transition)] hover:border-[var(--button-transition)] transition ease-in-out ">Buy Ticket
+    <div>
+      {/* Mobile View Nav */}
+      <div className="block md:hidden">
+        <div className="flex justify-between items-center p-4">
+          <Link href="/">
+            <img src="logo.svg" width="90px" alt="logo"/>
+          </Link>
+          <button 
+            onClick={toggleMenu}
+            className="text-white focus:outline-none"
+          >
+            {isMenuOpen ? (
+              <span className="text-2xl">×</span>
+            ) : (
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            )}
           </button>
+        </div>
+
+        {/* Mobile Menu Popup */}
+        <div 
+          className={`fixed inset-0 bg-white z-50 p-4 transform transition-transform duration-300 ease-in-out flex flex-col ${
+            isMenuOpen ? 'translate-x-0' : 'translate-x-full'
+          }`}
+        >
+            <div className="flex justify-between items-center mb-4">
+              <div className="flex items-center">
+                <img src="logo.svg" width="70px" alt="logo"/>
+                <span className="text-black">University of Waterloo</span>
+              </div>
+              <button 
+                onClick={toggleMenu}
+                className="text-gray-500 focus:outline-none text-2xl"
+              >
+                ×
+              </button>
+            </div>
+            
+            <div className="flex flex-col">
+              {navItems.map((item) => (
+                <Link 
+                  key={item.name} 
+                  href={item.path}
+                  onClick={toggleMenu}
+                  className="py-4 text-gray-800 border-b border-gray-200 font-medium uppercase"
+                >
+                  {item.name}
+                </Link>
+              ))}
+              <div className="mt-4 w-full">
+                <Link href="/buy_ticket" className="block mb-4">
+                  <button className="w-full bg-red-500 text-white py-3 rounded-md font-medium">
+                    Buy Tickets
+                  </button>
+                </Link>
+                <Link href="/buy_ticket" className="block">
+                  <button className="w-full bg-white text-black border border-black py-3 rounded-md font-medium">
+                    Log In
+                  </button>
+                </Link>
+              </div>
+            </div>
+            <div className="flex flex-row justify-between text-gray-500 mt-auto pt-4 w-full border-t border-gray-200">
+              {/* Social Links */}
+              <button className="text-sm"> Youtube → </button>
+              <button className="text-sm"> Linkedin → </button>
+              <button className="text-sm"> Instagram → </button>
+            </div>
+          </div>
+      </div>
+
+      {/* Desktop View Nav */}
+      <div className="hidden md:flex flex-row justify-between p-8 sticky top-0 z-10 shadow-sm w-full">
+        <div className="items-start md:gap-12 flex flex-row">
+          <Link href="/"><img src="logo.svg" width="90px" alt="logo"/></Link>
+          {navItems.map(n => (
+            <div key={n.name} className="hover:underline underline-offset-2 transition ease-in-out">
+              <Link href={n.path}>{n.name}</Link> 
+            </div>
+          ))}  
+        </div>
+        <div className="flex flex-row gap-8">
+          <Link href="/buy_ticket">
+            <button className="border rounded-lg border-2 px-4 py-2 hover:bg-[var(--button-transition)] hover:border-[var(--button-transition)] transition ease-in-out">
+              Buy Ticket
+            </button>
           </Link> 
-        <Link href="/log_in">
-          <button className="hover:underline underline-offset-2 transition ease-in-out pt-2">Log In</button>
-        </Link>
+          <Link href="/log_in">
+            <button className="hover:underline underline-offset-2 transition ease-in-out pt-2">
+              Log In
+            </button>
+          </Link>
+        </div>
       </div>
     </div>
   );
