@@ -82,12 +82,12 @@ export default function NavBar() {
                 </Link>
               ))}
               <div className="mt-4 w-full">
-                <Link href="/buy_ticket" className="block mb-4">
+                <Link href="/buy_ticket" className="block mb-4" onClick={toggleMenu}>
                   <button className="w-full bg-red-500 text-white py-3 rounded-md font-medium">
                     Buy Tickets
                   </button>
                 </Link>
-                <Link href="/buy_ticket" className="block">
+                <Link href="/log_in" className="block" onClick={toggleMenu}>
                   <button className="w-full bg-white text-black border border-black py-3 rounded-md font-medium">
                     Log In
                   </button>
