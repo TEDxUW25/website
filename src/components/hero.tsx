@@ -11,11 +11,11 @@ type MouseTrailPoint = {
 
 // reminder to replace w actual image and not link
 const trailImages = [
-    "trail_img/1.jpg", 
-    "trail_img/2.jpg", 
-    "trail_img/3.jpg", 
-    "trail_img/4.jpg", 
-    "trail_img/5.jpg", 
+    "trailed/1.jpg", 
+    "trailed/2.jpg", 
+    "trailed/3.jpg", 
+    "trailed/4.jpg", 
+    "trailed/5.jpg", 
 ];
 
 export default function HeroHome() {
