@@ -1,5 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 'use client'
+/* eslint-disable @next/next/no-img-element */
+'use client'
 import React, { useState, useEffect, useRef } from 'react';
 
 type MouseTrailPoint = {
@@ -23,7 +25,24 @@ export default function HeroHome() {
     const frameCountRef = useRef<number>(0);
     const lastPositionRef = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
     const [mouseTrail, setMouseTrail] = useState<MouseTrailPoint[]>([]);
+    const [isMobile, setIsMobile] = useState<boolean>(false);
   
+    // Check for mobile viewport on component mount and window resize
+    useEffect(() => {
+        const checkIfMobile = () => {
+            setIsMobile(window.innerWidth < 768); // Standard breakpoint for mobile
+        };
+        
+        // Initial check
+        checkIfMobile();
+        
+        // Add event listener for window resize
+        window.addEventListener('resize', checkIfMobile);
+        
+        // Cleanup
+        return () => window.removeEventListener('resize', checkIfMobile);
+    }, []);
+
     useEffect(() => {
         const container = containerRef.current;
         if (!container) return;
@@ -75,13 +94,27 @@ export default function HeroHome() {
   return (
     <div 
       ref={containerRef}
-      className="w-full h-screen bg-black overflow-hidden flex flex-col items-center justify-center cursor-none"
+      className="w-full h-screen bg-black overflow-hidden flex flex-col items-center justify-center cursor-none relative"
     >
+      {/* Background video for mobile only */}
+      {isMobile && (
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover z-0 opacity-60"
+        >
+          <source src="/promo_vid.mov" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      )}
+
       {/* Trail elements */}
       {mouseTrail.map(point => (
         <div
           key={point.id}
-          className="absolute pointer-events-none transform -translate-x-1/2 -translate-y-1/2 opacity-100 transition-all duration-1500 animate-pulse"
+          className="absolute pointer-events-none transform -translate-x-1/2 -translate-y-1/2 opacity-100 transition-all duration-1500 animate-pulse z-10"
           style={{ 
             left: `${point.x}px`, 
             top: `${point.y}px`,
@@ -98,7 +131,7 @@ export default function HeroHome() {
         </div>
       ))}
       
-      <div className="mb-16 flex flex-rows">
+      <div className="mb-16 flex flex-rows z-10">
         <img src="ted.svg" alt="" />
         <h1 className="text-6xl md:text-8xl font-bold text-white">
           <span className="text-white">UW</span>
@@ -106,7 +139,7 @@ export default function HeroHome() {
       </div>
       
       {/* Bottom Heading */}
-      <div className="mt-4">
+      <div className="mt-4 z-10">
         <h1 className="text-2xl md:text-3xl font-light text-white text-center">
           Ideas Change Everything.
         </h1>
@@ -118,4 +151,3 @@ export default function HeroHome() {
     </div>
   );
 };
-
