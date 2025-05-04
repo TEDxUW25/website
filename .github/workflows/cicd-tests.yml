@@ -6,6 +6,9 @@ on:
   push:
     branches: [test]
 
+permissions:
+  contents: write
+
 jobs:
   lint:
     name: Lint
@@ -41,6 +44,7 @@ jobs:
         with:
           tag_name: "test-release-${{ github.run_number }}"
           name: "Test Release ${{ github.run_number }}"
+          generate_release_notes: true
           body: |
             🚀 [View the live site](https://tedxuw25.netlify.app)
 
