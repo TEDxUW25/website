@@ -36,7 +36,6 @@ jobs:
   debug:
     name: Debug
     runs-on: ubuntu-latest
-    if: never()
     steps:
       - name: Print GitHub event context
         run: |
