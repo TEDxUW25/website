@@ -40,15 +40,25 @@ jobs:
       - name: Check out to branch
         uses: actions/checkout@v3
 
-      - name: Skip if not a PR merge commit
+      - name: Check if commit is from a merged PR
+        id: pr-check
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          MERGE_COUNT=$(git rev-list --parents -n 1 HEAD | wc -w)
-          if [ "$MERGE_COUNT" -lt 3 ]; then
-            echo "Not a merge commit. Skipping release."
-            exit 1
+          echo "Checking if commit ${{ github.sha }} was from a merged PR"
+          gh pr list --state merged --limit 50 --json number,mergeCommit | \
+          jq -r --arg sha "${{ github.sha }}" '.[] | select(.mergeCommit.oid == $sha) | .number' > pr_number.txt
+
+          if [ -s pr_number.txt ]; then
+            echo "Commit is from a merged PR."
+            echo "release=true" >> $GITHUB_OUTPUT
+          else
+            echo "Not a merged PR. Skipping release."
+            echo "release=false" >> $GITHUB_OUTPUT
           fi
 
       - name: Create GitHub release
+        if: steps.pr-check.outputs.release == 'true'
         uses: softprops/action-gh-release@v1
         with:
           tag_name: "release-${{ github.run_number }}"
