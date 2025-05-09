@@ -27,6 +27,24 @@ export const sponsorData: SponsorTier[] = [
     },
     ],
   },
+  { tier: "Platimun",
+    sponsors: [{
+      name: "Mef",
+      logo: "/sponsorLogos/platinum/mef.png",
+      description: "Mathematics Endowment Fund supporting education and innovation.",
+    },
+    {
+      name: "Mef",
+      logo: "/sponsorLogos/platinum/mef.png",
+      description: "Mathematics Endowment Fund supporting education and innovation.",
+    },
+    {
+      name: "Mef",
+      logo: "/sponsorLogos/platinum/mef.png",
+      description: "Mathematics Endowment Fund supporting education and innovation.",
+    },
+    ],
+  },
   { tier: "Gold",
     sponsors: [{
       name: "Mef",
