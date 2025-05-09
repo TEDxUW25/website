@@ -2,7 +2,7 @@
 
 import { motion, Variants } from "framer-motion" 
 import Image from "next/image"                  
-import React, { useState, useEffect, useRef } from "react"   
+import React, { useState, useEffect, useRef } from "react"  
 
 // Array of 5 dummy card images (typed)
 const cardImages: string[] = [
@@ -13,7 +13,7 @@ const cardImages: string[] = [
   "/cards/image 5.png"
 ]
 
-export default function ProjectHero() {
+export default function SponsorshipCard() {
   const [selected, setSelected] = useState<number | null>(null)
   const [, setWindowWidth] = useState(0) // used to trigger re-render
 
@@ -79,19 +79,8 @@ export default function ProjectHero() {
     }
   }
 
-  const containerRef = useRef<HTMLDivElement | null>(null)
-
   return (
-    <section
-      ref={containerRef}
-      className="flex flex-col items-center justify-start pt-12 sm:pt-24 min-h-screen bg-black text-white relative overflow-hidden"
-      onClick={() => setSelected(null)}
-    >
-      <h1 className="relative z-10 text-3xl sm:text-4xl md:text-5xl font-bold mb-6 sm:mb-10 -translate-y-6 sm:-translate-y-12 md:-translate-y-16">
-        BECOME OUR SPONSOR
-      </h1>
-
-      <div className="relative w-full h-auto px-4 sm:px-8">
+    <div className="relative w-full h-auto px-4 sm:px-8">
         <motion.div
           className="relative w-full h-[80vh] flex items-center justify-center"
           variants={containerVariants}
@@ -147,6 +136,5 @@ export default function ProjectHero() {
           })}
         </motion.div>
       </div>
-    </section>
   )
 }
