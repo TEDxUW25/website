@@ -3,6 +3,8 @@
 import React, { useRef } from "react"
 import SponsorshipHeading from "./SponsorshipHeading"
 import SponsorshipCard from "./SponsorshipCard"
+import { sponsorData } from "./sponsorData"
+import SponsorSection from "./SponsorSection"
 
 export default function SponsorshipHero() {
   const containerRef = useRef<HTMLDivElement | null>(null)
@@ -14,6 +16,21 @@ export default function SponsorshipHero() {
     >
       <SponsorshipHeading />
       <SponsorshipCard />
+      <a
+        href="https://www.instagram.com/tedxuw/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-block mt-12 px-6 py-3 text-lg font-medium text-white bg-red-600 hover:bg-red-700 rounded-full transition"
+      >
+        Become our Sponsor →
+      </a>
+      {sponsorData.map(({ tier, sponsors }, index) => (
+        <SponsorSection
+          key={index}
+          tier={tier}
+          sponsors={sponsors}
+        />
+      ))}
     </section>
   )
 }
