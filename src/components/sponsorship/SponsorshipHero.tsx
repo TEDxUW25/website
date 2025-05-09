@@ -12,7 +12,7 @@ export default function SponsorshipHero() {
   return (
     <section
       ref={containerRef}
-      className="flex flex-col items-center justify-start pt-4 sm:pt-10 min-h-screen bg-black text-white relative"
+      className="flex flex-col items-center justify-start min-h-screen bg-black text-white relative"
     >
       <SponsorshipHeading />
       <SponsorshipCard />
