@@ -6,11 +6,11 @@ import React, { useState, useEffect, useRef } from "react"
 
 // Array of 5 dummy card images (typed)
 const cardImages: string[] = [
-  "/cards/image1.png",
-  "/cards/image2.png",
-  "/cards/image3.png",
-  "/cards/image4.png",
-  "/cards/image5.png"
+  "/cards/image 1.png",
+  "/cards/image 2.png",
+  "/cards/image 3.png",
+  "/cards/image 4.png",
+  "/cards/image 5.png"
 ]
 
 export default function ProjectHero() {
