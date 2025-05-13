@@ -10,10 +10,12 @@ function AuthFormRegister() {
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault(); 
         console.log(email,password,confirmPassword)
+        if (password !== confirmPassword) {
+            alert("Passwords do not match");
+            return;
+        }
     }
     
-
-
 
     return(
         <div className="w-full">
