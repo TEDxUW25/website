@@ -1,6 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
-'use client'
-/* eslint-disable @next/next/no-img-element */
 'use client'
 import React, { useState, useEffect, useRef } from 'react';
 
@@ -108,7 +105,7 @@ export default function HeroHome() {
           <source src="/promo_vid.mov" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
-      )}
+      )} 
 
       {/* Trail elements */}
       {mouseTrail.map(point => (
