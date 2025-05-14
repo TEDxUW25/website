@@ -1,0 +1,86 @@
+name: CI/CD
+
+on:
+  pull_request:
+    branches: ['*']
+  push:
+    branches: ['*']
+
+permissions:
+  contents: write
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '23.11.0'
+      - run: npm ci
+      - run: npm run lint
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    needs: lint
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '23.11.0'
+      - run: npm ci
+      - run: npm run build
+
+  debug:
+    name: Debug
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print GitHub debug info
+        run: |
+          echo "Event: ${{ github.event_name }}"
+          echo "Ref: ${{ github.ref }}"
+          echo "SHA: ${{ github.sha }}"
+          echo "Head commit: ${{ github.event.head_commit.message || 'N/A' }}"
+          echo "Ref name: ${{ github.ref_name }}"
+          echo "Actor: ${{ github.actor }}"
+
+  release:
+    name: Release on merge
+    runs-on: ubuntu-latest
+    needs: [lint, build]
+    if: github.event_name == 'push'
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+      - name: Check if merge
+        id: pr-check
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "Checking if commit ${{ github.sha }} is from a merged PR."
+          gh pr list --state merged --limit 50 --json number,mergeCommit | \
+          jq -r --arg sha "${{ github.sha }}" '.[] | select(.mergeCommit.oid == $sha) | .number' > pr_number.txt
+
+          if [ -s pr_number.txt ]; then
+            echo "This is a merged PR. Creating release."
+            echo "release=true" >> $GITHUB_OUTPUT
+          else
+            echo "Not a merged PR. Skipping release."
+            echo "release=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create release on merge
+        if: steps.pr-check.outputs.release == 'true'
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: "release-${{ github.run_number }}"
+          name: "Release ${{ github.run_number }}"
+          generate_release_notes: true
+          body: |
+            🚀 [View the Netlify Preview](https://${{ github.ref_name }}--tedxuw25.netlify.app)
+
+            This release was automatically generated after pushing to the `${{ github.ref_name }}` branch.
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
