@@ -1,6 +1,7 @@
 'use client'
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 interface Nav {
   name: string,
@@ -24,15 +25,60 @@ const navItems: Nav[] = [
 
 export default function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  // Handle mounting effect - useful for client-side animations
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  // Animation variants
+  const navbarVariants = {
+    hidden: { y: -100, opacity: 0 },
+    visible: { 
+      y: 0, 
+      opacity: 1,
+      transition: { 
+        type: "spring", 
+        stiffness: 100, 
+        damping: 15,
+        duration: 0.8 
+      }
+    }
+  };
+
+  const mobileMenuVariants = {
+    closed: { 
+      x: "100%",
+      transition: { 
+        type: "spring", 
+        stiffness: 300, 
+        damping: 30 
+      }
+    },
+    open: { 
+      x: 0,
+      transition: { 
+        type: "spring", 
+        stiffness: 300, 
+        damping: 30 
+      }
+    }
+  };
+
   return (
     <div>
       {/* Mobile View Nav */}
-      <div className="block md:hidden">
+      <motion.div 
+        className="block md:hidden"
+        initial="hidden"
+        animate={mounted ? "visible" : "hidden"}
+        variants={navbarVariants}
+      >
         <div className="flex justify-between items-center p-4">
           <Link href="/">
             <img src="logo.svg" width="90px" alt="logo"/>
@@ -51,60 +97,66 @@ export default function NavBar() {
           </button>
         </div>
 
-        {/* Mobile Menu Popup */}
-        <div 
-          className={`fixed inset-0 bg-white z-50 p-4 transform transition-transform duration-300 ease-in-out flex flex-col ${
-            isMenuOpen ? 'translate-x-0' : 'translate-x-full'
-          }`}
+        {/* Mobile Menu Popup - using framer motion for slide animation */}
+        <motion.div 
+          className="fixed inset-0 bg-white z-50 p-4 flex flex-col"
+          initial="closed"
+          animate={isMenuOpen ? "open" : "closed"}
+          variants={mobileMenuVariants}
         >
-            <div className="flex justify-between items-center mb-4">
-              <div className="flex items-center">
-                <img src="logo.svg" width="70px" alt="logo"/>
-                <span className="text-black">University of Waterloo</span>
-              </div>
-              <button 
+          <div className="flex justify-between items-center mb-4">
+            <div className="flex items-center">
+              <img src="logo.svg" width="70px" alt="logo"/>
+              <span className="text-black">University of Waterloo</span>
+            </div>
+            <button 
+              onClick={toggleMenu}
+              className="text-gray-500 focus:outline-none text-2xl"
+            >
+              ×
+            </button>
+          </div>
+          
+          <div className="flex flex-col">
+            {navItems.map((item) => (
+              <Link 
+                key={item.name} 
+                href={item.path}
                 onClick={toggleMenu}
-                className="text-gray-500 focus:outline-none text-2xl"
+                className="py-4 text-gray-800 border-b border-gray-200 font-medium uppercase"
               >
-                ×
-              </button>
-            </div>
-            
-            <div className="flex flex-col">
-              {navItems.map((item) => (
-                <Link 
-                  key={item.name} 
-                  href={item.path}
-                  onClick={toggleMenu}
-                  className="py-4 text-gray-800 border-b border-gray-200 font-medium uppercase"
-                >
-                  {item.name}
-                </Link>
-              ))}
-              <div className="mt-4 w-full">
-                <Link href="/buy_ticket" className="block mb-4" onClick={toggleMenu}>
-                  <button className="w-full bg-red-500 text-white py-3 rounded-md font-medium">
-                    Buy Tickets
-                  </button>
-                </Link>
-                <Link href="/log_in" className="block" onClick={toggleMenu}>
-                  <button className="w-full bg-white text-black border border-black py-3 rounded-md font-medium">
-                    Log In
-                  </button>
-                </Link>
-              </div>
-            </div>
-            <div className="flex flex-row justify-between text-gray-500 mt-auto pt-4 w-full border-t border-gray-200">
-              {/* Social Links */}
-              <button className="text-sm"> Youtube → </button>
-              <button className="text-sm"> Linkedin → </button>
-              <button className="text-sm"> Instagram → </button>
+                {item.name}
+              </Link>
+            ))}
+            <div className="mt-4 w-full">
+              <Link href="/buy_ticket" className="block mb-4" onClick={toggleMenu}>
+                <button className="w-full bg-red-500 text-white py-3 rounded-md font-medium">
+                  Buy Tickets
+                </button>
+              </Link>
+              <Link href="/log_in" className="block" onClick={toggleMenu}>
+                <button className="w-full bg-white text-black border border-black py-3 rounded-md font-medium">
+                  Log In
+                </button>
+              </Link>
             </div>
           </div>
-      </div>
+          <div className="flex flex-row justify-between text-gray-500 mt-auto pt-4 w-full border-t border-gray-200">
+            {/* Social Links */}
+            <button className="text-sm"> Youtube → </button>
+            <button className="text-sm"> Linkedin → </button>
+            <button className="text-sm"> Instagram → </button>
+          </div>
+        </motion.div>
+      </motion.div>
 
       {/* Desktop View Nav */}
-      <div className="hidden md:flex flex-row justify-between p-8 sticky top-0 z-10 shadow-sm w-full">
+      <motion.div 
+        className="hidden md:flex flex-row justify-between p-8 sticky top-0 z-10 shadow-sm w-full"
+        initial="hidden"
+        animate={mounted ? "visible" : "hidden"}
+        variants={navbarVariants}
+      >
         <div className="items-start md:gap-12 flex flex-row">
           <Link href="/"><img src="logo.svg" width="90px" alt="logo"/></Link>
           {navItems.map(n => (
@@ -125,7 +177,7 @@ export default function NavBar() {
             </button>
           </Link>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }
