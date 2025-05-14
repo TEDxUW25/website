@@ -14,8 +14,8 @@ export default function LogIn() {
         {isLogin ? <AuthFormLogin/> : <AuthFormRegister/>}
         <div className="mt-6 text-center">
           {isLogin ? (
-            <span className="text-gray-700 text-base">Don't have an account?{' '}
-              <button
+            <span className="text-gray-700 text-base">Don&apos;t have an account?{' '}
+            <button
                 className="text-[#E50609] font-bold hover:underline hover:text-black transition-all duration-150"
                 onClick={() => setIsLogin(false)}
               >
