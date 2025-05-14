@@ -27,13 +27,13 @@ export default function Timeline() {
           desc="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum magnam iusto vitae ducimus ea, quam, amet et magni numquam laboriosam vero at animi dolorem velit nostrum dicta corporis repellendus molestias."
         />
         <Year
-          image="timeline_bg/timeline3.svg"
+          image="timeline_bg/timeline1.svg"
           yr="2024"
           theme={`In the Odd\nChance`}
           desc="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum magnam iusto vitae ducimus ea, quam, amet et magni numquam laboriosam vero at animi dolorem velit nostrum dicta corporis repellendus molestias."
         />
         <Year
-          image="timeline_bg/timeline3.svg"
+          image="timeline_bg/timeline2.svg"
           yr="2025"
           theme={`Everything\nReimagined`}
           desc="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum magnam iusto vitae ducimus ea, quam, amet et magni numquam laboriosam vero at animi dolorem velit nostrum dicta corporis repellendus molestias."
@@ -41,9 +41,9 @@ export default function Timeline() {
         <div className="sm:hidden">
           <Year
             image="timeline_bg/timeline3.svg"
-            yr="2025"
-            theme={`Everything\nReimagined`}
-            desc="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum magnam iusto vitae ducimus ea, quam, amet et magni numquam laboriosam vero at animi dolorem velit nostrum dicta corporis repellendus molestias."
+            yr="2026"
+            theme={`Coming\nSoon...`}
+            desc=""
           />
         </div>
       </div>
