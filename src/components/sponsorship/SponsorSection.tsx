@@ -52,7 +52,7 @@ export default function SponsorSection({
   return (
     <section className="w-full py-10">
       <h2 className="text-2xl sm:text-3xl font-semibold text-white px-4 mb-4">
-        {tier} <span className="font-normal italic ml-1">Sponsor</span>
+        {tier} <span className="font-normal italic ml-1">Sponsors</span>
       </h2>
 
       <div
