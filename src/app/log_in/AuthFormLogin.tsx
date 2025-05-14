@@ -17,7 +17,7 @@ function AuthFormLogin() {
       <h2 className="text-3xl font-extrabold text-center mb-8 tracking-tight" style={{ color: '#E50609' }}>Sign-in</h2>
       <div className="flex items-center my-6">
         <div className="flex-grow h-px bg-gray-200" />
-        <span className="mx-2 text-gray-400 text-sm font-semibold uppercase tracking-wider">ou</span>
+        <span className="mx-2 text-gray-400 text-sm font-semibold uppercase tracking-wider">or</span>
         <div className="flex-grow h-px bg-gray-200" />
       </div>
       <form onSubmit={handleSubmit} className="space-y-5">
