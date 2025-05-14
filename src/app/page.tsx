@@ -1,4 +1,5 @@
 import HeroHome from "@/components/hero";
+import LandingLoader from "@/components/LandingLoader";
 import Footer from "@/components/footer" // testing
 
 export default function Home() {
@@ -6,6 +7,8 @@ export default function Home() {
     <div className="font-[family-name:var(--font-sans)]">
         <HeroHome />
       <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
+        <LandingLoader />
+  
         <Footer /> {/* for testing */}
       </footer>
     </div>
