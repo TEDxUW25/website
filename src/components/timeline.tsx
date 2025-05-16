@@ -7,7 +7,7 @@ export default function Timeline() {
       <h1 className="font-extrabold tracking-[5vw] text-center text-[15vw] overflow-hidden">
         Timeline
       </h1>
-      <div className="grid grid-cols-3 sm:grid-cols-5 text-center">
+      <div className="grid grid-cols-3 md:grid-cols-5 text-center">
         <Year
           image="timeline_bg/timeline1.svg"
           yr="2018"
@@ -38,7 +38,7 @@ export default function Timeline() {
           theme={`Everything\nReimagined`}
           desc="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum magnam iusto vitae ducimus ea, quam, amet et magni numquam laboriosam vero at animi dolorem velit nostrum dicta corporis repellendus molestias."
         />
-        <div className="sm:hidden">
+        <div className="md:hidden">
           <Year
             image="timeline_bg/timeline3.svg"
             yr="2026"
