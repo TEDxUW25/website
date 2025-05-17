@@ -31,6 +31,7 @@ export function useMediaQuery(query: string): boolean {
 export default function Year(props: YearProps) {
   const isSmallScreen = useMediaQuery("(max-width: 768px)");
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isGrey, setIsGrey] = useState(false);
 
   const imgRef = useRef<HTMLImageElement>(null);
   const [imgHeight, setImgHeight] = useState<number | null>(null);
@@ -38,6 +39,13 @@ export default function Year(props: YearProps) {
   const handleClick = () => {
     if (isSmallScreen) {
       setIsExpanded((prev) => !prev);
+      setIsGrey((prev) => !prev);
+    }
+  };
+
+  const toggleGreyscale = () => {
+    if (!isSmallScreen) {
+      setIsGrey((prev) => !prev);
     }
   };
 
@@ -56,14 +64,16 @@ export default function Year(props: YearProps) {
   }, []);
 
   return (
-    <div className="relative text-white">
+    <div className="relative text-white group">
       <p className="hidden md:block md:text-center md:p-3 md:text-xs lg:text-sm lg:px-5 xl:px-8 xl:text-base">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat
         obcaecati quia nihil id cumque similique deserunt minus non a ducimus
         cupiditate expedita dicta, aliquam dolore molestiae quo sed sequi ad!
       </p>
       <img
-        className="border-y-2 border-x-1 border-white w-full"
+        className={`border-y-2 border-x-1 border-white w-full filter duration-300 transition-all ease-in-out ${
+          isGrey ? "grayscale-100" : ""
+        }`}
         ref={imgRef}
         src={props.image}
         alt="speaker bg img"
@@ -76,6 +86,8 @@ export default function Year(props: YearProps) {
         initial="initial"
         animate={isSmallScreen && isExpanded ? "hover" : "initial"}
         onClick={handleClick}
+        onHoverStart={toggleGreyscale}
+        onHoverEnd={toggleGreyscale}
         variants={{
           hover: { height: "auto" },
         }}
