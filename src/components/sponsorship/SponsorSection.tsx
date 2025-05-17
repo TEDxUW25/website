@@ -52,7 +52,7 @@ export default function SponsorSection({
         {[...sponsors, ...sponsors].map((sponsor, index) => (
           <div
             key={index}
-            className="relative flex-shrink-0 w-2/3 sm:w-1/3 md:w-1/3 lg:w-1/4 h-80 sm:h-96 md:h-[28rem] lg:h-[32rem] bg-white rounded-2xl p-[1.5rem] shadow-lg flex flex-col"
+            className="relative flex-shrink-0 w-2/3 sm:w-1/3 md:w-1/3 lg:w-1/4 h-80 sm:h-98 md:h-[28rem] lg:h-[32rem] bg-white rounded-2xl p-[1.5rem] shadow-lg flex flex-col"
           >
             {/* Logo positioned at top-right corner */}
             <div className="absolute -top-1/10 w-32 sm:w-36 md:w-40 lg:w-50 h-32 sm:h-36 md:h-40 lg:h-44 relative">
