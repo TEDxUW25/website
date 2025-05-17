@@ -1,6 +1,5 @@
 'use client';
 import React, { useState } from 'react';
-import Image from 'next/image';
 import { Speaker, SPEAKERS } from '@/data/speakers';
 
 // Social icon components
@@ -47,7 +46,7 @@ const SpeakerCard = ({ speaker }: { speaker: Speaker }) => {
       
       <div className="p-4">
         {speaker.talkTitle && (
-          <p className="text-lg font-semibold mb-2 text-red-400">"{speaker.talkTitle}"</p>
+          <p className="text-lg font-semibold mb-2 text-red-400">&ldquo;{speaker.talkTitle}&rdquo;</p>
         )}
         <p className="text-sm text-zinc-300 mb-4">{speaker.bio}</p>
         

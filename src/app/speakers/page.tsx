@@ -1,9 +1,6 @@
 'use client';
 import React from 'react';
-import Image from 'next/image';
 import { Speaker, SPEAKERS } from '@/data/speakers';
-
-const getSpeakerImage = (imageUrl?: string) => imageUrl || '/speaker-placeholder.png';
 
 interface FeaturedSpeakerCardProps {
   speaker: Speaker;
