@@ -2,19 +2,19 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence, Variants } from 'framer-motion';
-import HeroHome from "@/components/hero";
+import LandingTransition from './LandingTransition';
 
-// Types
-type LoadingTextProps = {
-  text: string;
-  showCursor: boolean;
-};
+// Component props and animation configuration
+type LoadingTextProps = { text: string };
+type ProgressProps = { progress: number };
 
-type ProgressProps = {
-  progress: number;
-};
+const ANIMATION_CONFIG = {
+  DURATION: 4000,
+  TYPEWRITER_DELAY: 100,
+  LOADING_COMPLETE_PAUSE: 800
+} as const;
 
-// Animation variants
+// Animation variants for fade and hover effects
 const fadeInVariants = {
   up: {
     initial: { opacity: 0, y: 20 },
@@ -31,7 +31,7 @@ const fadeInVariants = {
     animate: { opacity: 1, x: 0 },
     transition: { duration: 0.5 }
   }
-};
+} as const;
 
 const logoHoverVariants: Variants = {
   hover: {
@@ -40,22 +40,13 @@ const logoHoverVariants: Variants = {
       'drop-shadow(0 0 0px rgba(239, 68, 68, 0))',
       'drop-shadow(0 0 8px rgba(239, 68, 68, 0.5))'
     ],
-    transition: { 
-      duration: 0.4,
-      ease: [0.16, 1, 0.3, 1]
-    }
+    transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] }
   }
 };
 
-// Constants
-const ANIMATION_CONFIG = {
-  DURATION: 7000,
-  TYPEWRITER_DELAY: 100,
-  EXIT_DURATION: 0.8,
-  EXIT_EASE: [0.16, 1, 0.3, 1] as const
-};
-
-// Components
+/**
+ * Logo component displays the animated TED×UW logo with hover effects
+ */
 const Logo: React.FC = () => (
   <motion.span {...fadeInVariants.up} className="flex items-end relative select-none">
     <motion.span 
@@ -93,6 +84,9 @@ const Logo: React.FC = () => (
   </motion.span>
 );
 
+/**
+ * ProgressBar component shows the loading progress with a red indicator
+ */
 const ProgressBar: React.FC<ProgressProps> = ({ progress }) => (
   <div className="absolute bottom-8 left-0 w-full px-8">
     <motion.div 
@@ -109,6 +103,9 @@ const ProgressBar: React.FC<ProgressProps> = ({ progress }) => (
   </div>
 );
 
+/**
+ * LoadingText component displays the typewriter-style loading message
+ */
 const LoadingText: React.FC<LoadingTextProps> = ({ text }) => (
   <motion.div 
     {...fadeInVariants.left}
@@ -124,29 +121,49 @@ const LoadingText: React.FC<LoadingTextProps> = ({ text }) => (
   </motion.div>
 );
 
+/**
+ * ProgressPercentage component shows the current loading percentage
+ */
 const ProgressPercentage: React.FC<ProgressProps> = ({ progress }) => (
   <motion.div 
     {...fadeInVariants.right}
-    className="absolute top-8 right-8 text-lg"
+    className="absolute top-8 right-8 text-2xl"
   >
     <motion.span
       key={Math.round(progress)}
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
-      className="font-medium tracking-wider text-gray-100"
+      className="font-semibold tracking-wider text-white"
     >
       {Math.round(progress)}%
     </motion.span>
   </motion.div>
 );
 
+/**
+ * LandingLoader is the main component that orchestrates the loading sequence
+ * and transition to the hero section. It manages:
+ * 1. Typewriter text animation
+ * 2. Progress bar animation
+ * 3. Transition to hero section
+ */
 const LandingLoader: React.FC = () => {
   const [progress, setProgress] = useState(0);
   const [showLoader, setShowLoader] = useState(true);
+  const [showTransition, setShowTransition] = useState(false);
   const [displayText, setDisplayText] = useState('');
   const typewriterRef = useRef<NodeJS.Timeout | null>(null);
 
+  // Prevent scrolling while loading screen is active
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, []);
+
+  // Handle typewriter animation
   useEffect(() => {
     const text = "Loading your experience...";
     let currentIndex = 0;
@@ -165,6 +182,7 @@ const LandingLoader: React.FC = () => {
     };
   }, []);
 
+  // Handle progress animation
   useEffect(() => {
     const startTime = Date.now();
     
@@ -177,7 +195,10 @@ const LandingLoader: React.FC = () => {
         requestAnimationFrame(animateProgress);
       } else {
         setProgress(100);
-        setShowLoader(false);
+        setTimeout(() => {
+          setShowTransition(true);
+          setShowLoader(false);
+        }, ANIMATION_CONFIG.LOADING_COMPLETE_PAUSE);
       }
     };
 
@@ -185,27 +206,28 @@ const LandingLoader: React.FC = () => {
   }, []);
 
   return (
-    <AnimatePresence>
-      {showLoader ? (
-        <motion.div 
-          className="fixed inset-0 bg-black flex flex-col justify-center items-center min-h-screen w-full z-50"
-          exit={{ opacity: 0 }}
-          transition={{ 
-            duration: ANIMATION_CONFIG.EXIT_DURATION, 
-            ease: ANIMATION_CONFIG.EXIT_EASE 
-          }}
-        >
-          <LoadingText text={displayText} showCursor={true} />
-          <ProgressPercentage progress={progress} />
-          <div className="flex items-center justify-center mb-24">
-            <Logo />
-          </div>
-          <ProgressBar progress={progress} />
-        </motion.div>
-      ) : (
-        <HeroHome />
-      )}
-    </AnimatePresence>
+    <>
+      <AnimatePresence mode="wait">
+        {showLoader && (
+          <motion.div 
+            className="fixed inset-0 bg-black flex flex-col justify-center items-center min-h-screen w-full z-[70]"
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.15 }}
+          >
+            <LoadingText text={displayText} />
+            <ProgressPercentage progress={progress} />
+            <div className="flex items-center justify-center mb-24">
+              <Logo />
+            </div>
+            <ProgressBar progress={progress} />
+          </motion.div>
+        )}
+      </AnimatePresence>
+      <LandingTransition 
+        isVisible={showTransition} 
+        onTransitionComplete={() => setShowTransition(false)} 
+      />
+    </>
   );
 };
 
