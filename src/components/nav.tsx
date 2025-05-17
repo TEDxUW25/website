@@ -26,10 +26,25 @@ const navItems: Nav[] = [
 export default function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   // Handle mounting effect - useful for client-side animations
   useEffect(() => {
     setMounted(true);
+    
+    // Add scroll event listener with faster detection threshold
+    const handleScroll = () => {
+      if (window.scrollY > 20) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   const toggleMenu = () => {
@@ -74,7 +89,7 @@ export default function NavBar() {
     <div>
       {/* Mobile View Nav */}
       <motion.div 
-        className="block md:hidden"
+        className={`block md:hidden fixed top-0 w-full z-30 transition-all duration-200 ${scrolled ? 'bg-black' : 'bg-black'}`}
         initial="hidden"
         animate={mounted ? "visible" : "hidden"}
         variants={navbarVariants}
@@ -85,7 +100,7 @@ export default function NavBar() {
           </Link>
           <button 
             onClick={toggleMenu}
-            className="text-white focus:outline-none"
+            className={`focus:outline-none ${scrolled ? 'text-white' : 'text-white'}`}
           >
             {isMenuOpen ? (
               <span className="text-2xl">×</span>
@@ -99,7 +114,7 @@ export default function NavBar() {
 
         {/* Mobile Menu Popup - using framer motion for slide animation */}
         <motion.div 
-          className="fixed inset-0 bg-white z-50 p-4 flex flex-col"
+          className="fixed inset-0 bg-black z-50 p-4 flex flex-col"
           initial="closed"
           animate={isMenuOpen ? "open" : "closed"}
           variants={mobileMenuVariants}
@@ -152,27 +167,27 @@ export default function NavBar() {
 
       {/* Desktop View Nav */}
       <motion.div 
-        className="hidden md:flex flex-row justify-between p-8 sticky top-0 z-10 shadow-sm w-full"
+        className={`hidden md:flex flex-row justify-between p-4 fixed top-0 z-30 w-full transition-all duration-200 ${scrolled ? 'bg-black/30 backdrop-blur' : 'bg-black shadow-sm'}`}
         initial="hidden"
         animate={mounted ? "visible" : "hidden"}
         variants={navbarVariants}
       >
-        <div className="items-start md:gap-12 flex flex-row">
+        <div className="items-start mt-2 md:gap-12 flex flex-row">
           <Link href="/"><img src="logo.svg" width="90px" alt="logo"/></Link>
           {navItems.map(n => (
-            <div key={n.name} className="hover:underline underline-offset-2 transition ease-in-out">
+            <div key={n.name} className={`hover:underline underline-offset-2 transition ease-in-out ${scrolled ? 'text-white' : 'text-white'}`}>
               <Link href={n.path}>{n.name}</Link> 
             </div>
           ))}  
         </div>
         <div className="flex flex-row gap-8">
           <Link href="/buy_ticket">
-            <button className="border rounded-lg border-2 px-4 py-2 hover:bg-[var(--button-transition)] hover:border-[var(--button-transition)] transition ease-in-out">
+            <button className={`border rounded-lg border-2 px-4 py-2 hover:bg-[var(--button-transition)] hover:border-[var(--button-transition)] transition ease-in-out border-white text-white`}>
               Buy Ticket
             </button>
           </Link> 
           <Link href="/log_in">
-            <button className="hover:underline underline-offset-2 transition ease-in-out pt-2">
+            <button className={`hover:underline underline-offset-2 transition ease-in-out pt-2 text-white`}>
               Log In
             </button>
           </Link>
