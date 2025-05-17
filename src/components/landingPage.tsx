@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence, Variants } from 'framer-motion';
-import LandingTransition from './LandingTransition';
+import LandingTransition from './landingTransition';
 
 // Component props and animation configuration
 type LoadingTextProps = { text: string };
