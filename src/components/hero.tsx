@@ -136,11 +136,11 @@ export default function HeroHome() {
                     />
                 </div>
             ))}
-
+{/* 
             <div className=" text-center font-semibold leading-none">
               <div className='text-3xl mb-4'> Ideas that inspire change, made possible by the TEDxUW team.</div>
               <div className="dotted text-9xl"> EVERYTHING REIMAGINED</div>
-            </div>
+            </div> */}
 
                       
             <div className=" mt-8 flex flex-rows z-10">

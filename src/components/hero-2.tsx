@@ -1,146 +1,139 @@
 'use client'
-import { motion } from "framer-motion";
-import { useState, useCallback, useEffect } from "react";
-import Tile from "./Tile";
+import { useEffect, useRef, useState } from 'react';
 
-export default function Hero2() {
-  const [hoveredIndex, setHoveredIndex] = useState(null);
-  const [hoverTrail, setHoverTrail] = useState([]);
-  const cols = 20;
-  const rows = 12;
-  const totalTiles = cols * rows;
-  
-  // Use a single image for the entire grid
-  // Replace this with your actual image URL
-  const imageUrl = "https://i.pinimg.com/736x/a6/ce/92/a6ce92109f19db3dbe63d9846ed20910.jpg";
-  
-  // Handle hover effect and create trail
-  const handleTileHover = useCallback((index) => {
-    setHoveredIndex(index);
-    // Create a trail of tiles that will be affected
-    const trail = [];
-    const maxTrailRadius = 6; // How far the effect reaches
-    
-    // Get coordinates of the hovered tile
-    const row = Math.floor(index / cols);
-    const col = index % cols;
-    
-    // Create a ripple effect in all directions
-    for (let r = -maxTrailRadius; r <= maxTrailRadius; r++) {
-      for (let c = -maxTrailRadius; c <= maxTrailRadius; c++) {
-        // Skip the center tile (the one being hovered)
-        if (r === 0 && c === 0) continue;
-        
-        const newRow = row + r;
-        const newCol = col + c;
-        
-        // Make sure we're in bounds
-        if (newRow >= 0 && newRow < rows && newCol >= 0 && newCol < cols) {
-          const newIndex = newRow * cols + newCol;
-          
-          // Calculate distance for delay (using Manhattan distance for an interesting pattern)
-          const distance = Math.abs(r) + Math.abs(c);
-          
-          trail.push({
-            index: newIndex,
-            // Tiles further away get more delay
-            delay: distance * 0.04
-          });
-        }
-      }
+export default function HeroSection() {
+  const videoRef = useRef(null);
+  const sectionRefs = useRef([]);
+  const [activeSection, setActiveSection] = useState(0);
+  const containerRef = useRef(null);
+
+  // Text content for each section
+  const sections = [
+    {
+      title: "Step into a world of ideas worth spreading at TEDxUW 2025.",
+      footnote: "1"
+    },
+    {
+      title: "Discover voices that challenge convention and ignite curiosity.",
+      footnote: "2"
+    },
+    {
+      title: "Experience talks that connect passion, purpose, and possibility.",
+      footnote: "3"
+    },
+    {
+      title: "Join the movement. Inspire change. Be part of something bigger.",
+      footnote: "4"
     }
-    
-    // Sort by delay so closest tiles activate first
-    trail.sort((a, b) => a.delay - b.delay);
-    
-    setHoverTrail(trail);
-  }, [cols, rows]);
+  ];
   
-  // Effect to animate trail
+
+  // Set up intersection observer to detect which section is in view
   useEffect(() => {
-    if (hoverTrail.length > 0) {
-      const timers = hoverTrail.map(({ index, delay }) => {
-        return setTimeout(() => {
-          const element = document.querySelector(`[data-index="${index}"]`);
-          if (element) {
-            element.classList.add('active');
-            
-            // Keep the image visible for a while
-            setTimeout(() => {
-              element.classList.remove('active');
-            }, 800); // Longer duration for a nice effect
+    const options = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.5, // Trigger when element is 50% visible
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const index = sectionRefs.current.findIndex(ref => ref === entry.target);
+          if (index !== -1) {
+            setActiveSection(index);
           }
-        }, delay * 1000);
+        }
       });
-      
-      return () => {
-        timers.forEach(timer => clearTimeout(timer));
-      };
-    }
-  }, [hoverTrail]);
+    }, options);
+
+    // Observe all section elements
+    sectionRefs.current.forEach(ref => {
+      if (ref) observer.observe(ref);
+    });
+
+    return () => {
+      sectionRefs.current.forEach(ref => {
+        if (ref) observer.unobserve(ref);
+      });
+    };
+  }, []);
+
+  // Handle smooth scroll logic
+  const handleScroll = (index) => {
+    sectionRefs.current[index].scrollIntoView({
+      behavior: 'smooth',
+      block: 'center'
+    });
+  };
 
   return (
-    <main className="w-full relative">
-      {/* Grid background */}
-      <section className="w-full grid grid-cols-20 h-screen overflow-y-clip">
-        {Array.from(Array(totalTiles), (_, i) => (
-          <div key={i} data-index={i} className={`tile-wrapper ${hoveredIndex === i ? 'hovered' : ''}`}>
-            <Tile 
-              index={i} 
-              onHover={handleTileHover} 
-              cols={cols} 
-              rows={rows}
-              imageUrl={imageUrl}
+    <div className="relative w-full bg-black text-white overflow-hidden">
+      {/* Video background */}
+      <video 
+        ref={videoRef}
+        autoPlay 
+        muted 
+        loop 
+        playsInline
+        className="absolute top-0 left-0 w-full h-full object-cover opacity-60"
+      >
+        <source src="promo_vid.mov" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+
+      {/* Navigation dots */}
+      <div className="absolute right-8 top-1/2 transform -translate-y-1/2 z-20">
+        <div className="flex flex-col gap-4">
+          {sections.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => handleScroll(index)}
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                activeSection === index ? 'bg-white scale-125' : 'bg-gray-500'
+              }`}
+              aria-label={`Go to section ${index + 1}`}
             />
+          ))}
+        </div>
+      </div>
+
+      {/* Main content container */}
+      <div 
+        ref={containerRef}
+        className="relative min-h-screen z-10 flex flex-col snap-y snap-mandatory overflow-y-auto"
+      >
+
+        {/* Text sections that highlight on scroll */}
+        {sections.map((section, index) => (
+          <div 
+            key={index}
+            ref={el => sectionRefs.current[index] = el}
+            className="min-h-screen flex items-center justify-center snap-start scroll-mt-0"
+          >
+            <div className="max-w-4xl px-6 py-24 text-center">
+              <h2 className="text-5xl md:text-6xl font-bold leading-tight">
+                <span className={activeSection === index ? 'text-white' : 'text-gray-600'}>
+                  {section.title.split(' ').map((word, wordIndex) => (
+                    <span 
+                      key={wordIndex} 
+                      className="transition-all duration-700"
+                      style={{
+                        opacity: activeSection === index ? 1 : 0.3,
+                        transform: activeSection === index ? 'translateY(0)' : 'translateY(20px)',
+                        transitionDelay: `${wordIndex * 50}ms`
+                      }}
+                    >
+                      {word}{' '}
+                    </span>
+                  ))}
+                  <sup>{section.footnote}</sup>
+                </span>
+              </h2>
+            </div>
           </div>
         ))}
-      </section>
-      
-      <style jsx global>{`
-        .tile-wrapper.active .motion-div,
-        .tile-wrapper.hovered .motion-div {
-          opacity: 1 !important;
-          transition: all 0.4s ease-out;
-        }
-        
-        /* Optional: Add a subtle zoom effect */
-        .tile-wrapper .motion-div {
-          transform: scale(1.1);
-        }
-        
-        .tile-wrapper.active .motion-div,
-        .tile-wrapper.hovered .motion-div {
-          transform: scale(1);
-        }
-      `}</style>
-      
-      <div className="pointer-events-none absolute inset-0 flex flex-col gap-5 items-center justify-center z-10 mb-10 font-poppins">
-        <motion.h1
-          initial={{ opacity: 0, y: 100 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-9xl text-neutral-100 font-black uppercase tracking-tight"
-        >
-          hello
-        </motion.h1>
-        <motion.p
-          initial={{ opacity: 0, y: 100 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.25 }}
-          className="text-white w-1/2 text-xl text-center tracking-wide"
-        >
-          Join my growing community of creative developers
-        </motion.p>
-        <motion.button
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          transition={{ type: "spring", stiffness: 400, damping: 17 }}
-          className="text-neutral-100 rounded-full text-3xl bg-indigo-700 px-10 py-3 border border-indigo-900 pointer-events-auto"
-        >
-          Subscribe
-        </motion.button>
       </div>
-    </main>
+    </div>
   );
 }
