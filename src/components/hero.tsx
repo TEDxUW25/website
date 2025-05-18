@@ -1,12 +1,16 @@
+
+/* eslint-disable @next/next/no-img-element */
+
 'use client'
 import React, { useState, useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
 
 type MouseTrailPoint = {
     id: number;
     x: number;
     y: number;
     image: string;
-  };
+};
 
 // reminder to replace w actual image and not link
 const trailImages = [
@@ -17,12 +21,26 @@ const trailImages = [
     "trailed/5.jpg", 
 ];
 
+const fadeUpVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: (delay: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: [0.16, 1, 0.3, 1],
+      delay
+    }
+  })
+};
+
 export default function HeroHome() {
     const containerRef = useRef<HTMLDivElement | null>(null);
     const frameCountRef = useRef<number>(0);
     const lastPositionRef = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
     const [mouseTrail, setMouseTrail] = useState<MouseTrailPoint[]>([]);
     const [isMobile, setIsMobile] = useState<boolean>(false);
+    const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   
     // Check for mobile viewport on component mount and window resize
     useEffect(() => {
@@ -93,31 +111,39 @@ export default function HeroHome() {
       ref={containerRef}
       className="w-full h-screen bg-black overflow-hidden flex flex-col items-center justify-center cursor-none relative"
     >
-      {/* Background video for mobile only */}
+      {/* Background video for mobile */}
       {isMobile && (
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover z-0 opacity-60"
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: isVideoLoaded ? 0.6 : 0 }}
+          transition={{ duration: 0.8 }}
+          className="absolute inset-0 w-full h-full z-0"
         >
-          <source src="/promo_vid.mov" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            onLoadedData={() => setIsVideoLoaded(true)}
+            className="w-full h-full object-cover"
+          >
+            <source src="/promo_vid.mov" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </motion.div>
       )}
 
       {/* Trail elements */}
       {mouseTrail.map(point => (
-        <div
+        <motion.div
           key={point.id}
-          className="absolute pointer-events-none transform -translate-x-1/2 -translate-y-1/2 opacity-100 transition-all duration-1500 animate-pulse z-10"
+          className="absolute pointer-events-none transform -translate-x-1/2 -translate-y-1/2 z-10"
+          initial={{ opacity: 1, scale: 1 }}
+          animate={{ opacity: 0, scale: 0.8 }}
+          transition={{ duration: 1.5, ease: "easeOut" }}
           style={{ 
             left: `${point.x}px`, 
             top: `${point.y}px`,
-            animationDuration: '3s',
-            opacity: 1,
-            animation: 'fadeOut 3s forwards',
           }}
         >
           <img 
@@ -125,26 +151,44 @@ export default function HeroHome() {
             alt="Trail" 
             className="w-50 object-contain"
           />
-        </div>
+        </motion.div>
       ))}
       
-      <div className="mb-16 flex flex-rows z-10">
-        <img src="ted.svg" alt="" />
-        <h1 className="text-6xl md:text-8xl font-bold text-white">
+      {/* Logo and Title */}
+      <motion.div 
+        className="mb-16 flex flex-rows z-10"
+        custom={0.3}
+        variants={fadeUpVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        <img src="ted.svg" alt="TED" className="h-16 md:h-20" />
+        <h1 className="text-6xl md:text-8xl font-bold text-white ml-4">
           <span className="text-white">UW</span>
         </h1>
-      </div>
+      </motion.div>
       
-      {/* Bottom Heading */}
-      <div className="mt-4 z-10">
-        <h1 className="text-2xl md:text-3xl font-light text-white text-center">
+      {/* Bottom Content */}
+      <div className="mt-4 z-10 text-center">
+        <motion.h1 
+          className="text-2xl md:text-3xl font-light text-white"
+          custom={0.5}
+          variants={fadeUpVariants}
+          initial="hidden"
+          animate="visible"
+        >
           Ideas Change Everything.
-        </h1>
-        <p className="text-lg md:text-xl text-white text-center mt-2 opacity-80">
+        </motion.h1>
+        <motion.p 
+          className="text-lg md:text-xl text-white mt-2 opacity-80"
+          custom={0.7}
+          variants={fadeUpVariants}
+          initial="hidden"
+          animate="visible"
+        >
           Ideas that inspire change, made possible by the TEDxUW team.
-        </p>
+        </motion.p>
       </div>
-      
     </div>
   );
 };
