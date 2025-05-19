@@ -20,15 +20,16 @@ export default function SponsorshipHero() {
         href="https://www.instagram.com/tedxuw/"
         target="_blank"
         rel="noopener noreferrer"
-        className="mt-3 sm:mt-4 md:mt-6 lg:mt-10
-           px-4 sm:px-6 md:px-8 
-           py-2 sm:py-3 
-           text-base sm:text-lg 
-           font-medium text-white 
-           bg-red-600 hover:bg-red-700 
-           rounded-full 
-           transition 
-           mx-auto block text-center"
+        className="
+          mt-3 sm:mt-4 md:mt-6 lg:mt-8
+          px-4 sm:px-6 md:px-10
+          py-2 sm:py-3 md:py-4
+          text-sm sm:text-base md:text-xl
+          font-medium text-white 
+          bg-red-600 hover:bg-red-700 
+          rounded-full 
+          transition 
+          mx-auto block text-center"
       >
         Become our Sponsor →
       </a>

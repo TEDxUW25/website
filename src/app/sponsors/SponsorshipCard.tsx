@@ -90,9 +90,14 @@ export default function SponsorshipCard() {
   }
 
   return (
-    <div className="w-full h-auto px-2 sm:px-4 md:px-8 mt-3 sm:mt-5 md:mt-10 lg:mt-15">
+    <div className="w-full h-auto 
+                    px-2 sm:px-4 md:px-8 
+                    mt-3 sm:mt-5 md:mt-10 lg:mt-15 
+                    pt-8">
       <motion.div
-        className="relative w-full h-[60vh] sm:h-[70vh] md:h-[80vh] flex items-center justify-center"
+        className="relative w-full 
+                   h-[35vh] sm:h-[37vh] md:h-[40vh] lg:h-[90vh] 
+                   flex items-center justify-center"
         variants={containerVariants}
         initial="initial"
         animate="animate"
@@ -132,7 +137,7 @@ export default function SponsorshipCard() {
               }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
               className={`absolute top-1/3 -translate-y-1/2 
-                         w-[25vw]
+                         w-[30vw]
                          max-w-[400px]
                          aspect-[2/3] 
                          bg-gray-800 rounded-xl cursor-pointer shadow-lg`}
