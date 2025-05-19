@@ -1,19 +1,25 @@
 "use client"
 
-import { motion, useScroll, useTransform } from "framer-motion"
+import { useEffect } from "react"
+import { motion, useTransform, useMotionValue, animate } from "framer-motion"
 
-const SponsorshipHeading = () => {
-  const { scrollY } = useScroll()
+const SponsorshipHeading = ({ cardVisible }: { cardVisible: boolean }) => {
+  const visibilityValue = useMotionValue(cardVisible ? 1 : 0)
 
-  const range = [700, 900]
+  // Smoothly animate when visibility changes
+  const becomeOpacity = useTransform(visibilityValue, [0, 1], [0, 1])
+  const becomeX = useTransform(visibilityValue, [0, 1], [-40, 0])
 
-  // "BECOME OUR SPONSOR" animation
-  const becomeOpacity = useTransform(scrollY, range, [1, 0])
-  const becomeX = useTransform(scrollY, range, [0, -40])
+  const ourOpacity = useTransform(visibilityValue, [0, 1], [1, 0])
+  const ourX = useTransform(visibilityValue, [0, 1], [0, 40])
 
-  // "OUR SPONSORS" animation
-  const ourOpacity = useTransform(scrollY, range, [0, 1])
-  const ourX = useTransform(scrollY, range, [40, 0])
+  // Optional: animate `visibilityValue` using useEffect
+  useEffect(() => {
+    animate(visibilityValue, cardVisible ? 1 : 0, {
+      duration: 0.6,
+      ease: [0.25, 0.1, 0.25, 1], 
+    })
+  }, [cardVisible, visibilityValue])
 
   return (
     <div className="sticky top-0 z-40 w-full bg-black/70 backdrop-blur h-10 sm:h-15 md:h-18 lg:h-30 flex items-center">
