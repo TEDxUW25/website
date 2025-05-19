@@ -4,8 +4,8 @@ import React, { useRef } from "react"
 import { useInView } from "framer-motion"
 import SponsorshipHeading from "./SponsorshipHeading"
 import SponsorshipCard from "./SponsorshipCard"
-import SponsorshipSection from "./SponsorSection"
-import { sponsorData } from "./sponsorData"
+//import SponsorshipSection from "./SponsorSection"
+//import { sponsorData } from "./sponsorData"
 
 export default function SponsorshipHero() {
   const cardRef = useRef<HTMLDivElement | null>(null)
@@ -35,13 +35,13 @@ export default function SponsorshipHero() {
         Become our Sponsor →
       </a>
 
-      {sponsorData.map(({ tier, sponsors }, index) => (
+      {/* {sponsorData.map(({ tier, sponsors }, index) => (
         <SponsorshipSection
           key={index}
           tier={tier}
           sponsors={sponsors}
         />
-      ))}
+      ))} */}
     </section>
   )
 }
