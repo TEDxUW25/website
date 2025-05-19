@@ -16,7 +16,7 @@ const SponsorshipHeading = () => {
   const ourX = useTransform(scrollY, range, [40, 0])
 
   return (
-    <div className="sticky top-0 z-[999] w-full bg-black/70 backdrop-blur h-5 sm:h-10 md:h-18 lg:h-28.5 flex items-center">
+    <div className="sticky top-0 z-50 w-full bg-black/70 backdrop-blur h-5 sm:h-10 md:h-18 lg:h-28.5 flex items-center">
       <div className="relative w-full h-full flex items-center">
         {/* Title 1: "BECOME OUR SPONSOR" */}
         <motion.h1
