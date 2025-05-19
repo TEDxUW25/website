@@ -1,26 +1,12 @@
 "use client"
 
-import React, { useRef } from "react"
-import { useInView } from "framer-motion"
-import SponsorshipHeading from "./SponsorshipHeading"
-import SponsorshipCard from "./SponsorshipCard"
-//import SponsorshipSection from "./SponsorSection"
-//import { sponsorData } from "./sponsorData"
+import SponsorshipSection from "./SponsorSection"
+import { sponsorData } from "./sponsorData"
 
 export default function SponsorshipHero() {
-  const cardRef = useRef<HTMLDivElement | null>(null)
-
-  // "true" when cards are in the viewport
-  const cardsInView = useInView(cardRef)
 
   return (
     <section className="flex flex-col items-center justify-start min-h-screen bg-black text-white relative">
-      <SponsorshipHeading cardVisible={cardsInView} />
-
-      <div ref={cardRef}>
-        <SponsorshipCard />
-      </div>
-
       <a
         href="https://www.instagram.com/tedxuw/"
         target="_blank"
@@ -35,13 +21,13 @@ export default function SponsorshipHero() {
         Become our Sponsor →
       </a>
 
-      {/* {sponsorData.map(({ tier, sponsors }, index) => (
+      {sponsorData.map(({ tier, sponsors }, index) => (
         <SponsorshipSection
           key={index}
           tier={tier}
           sponsors={sponsors}
         />
-      ))} */}
+      ))}
     </section>
   )
 }
