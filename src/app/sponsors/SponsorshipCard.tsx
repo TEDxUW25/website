@@ -80,7 +80,7 @@ export default function SponsorshipCard() {
   }
 
   return (
-    <div className="relative w-full h-auto px-4 sm:px-8">
+    <div className="w-full h-auto px-4 sm:px-8 mt-3 sm:mt-5 md:mt-10 lg:mt-15">
         <motion.div
           className="relative w-full h-[80vh] flex items-center justify-center"
           variants={containerVariants}
