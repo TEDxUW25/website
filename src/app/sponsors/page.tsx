@@ -1,4 +1,4 @@
-import SponsorshipHero from "@/components/sponsorship/SponsorshipHero"
+import SponsorshipHero from "@/app/sponsors/SponsorshipHero"
 
 export default function Sponsor() {
   return (
