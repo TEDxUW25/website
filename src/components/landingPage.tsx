@@ -134,7 +134,7 @@ const ProgressPercentage: React.FC<ProgressProps> = ({ progress }) => (
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
-      className="font-semibold tracking-wider text-white"
+      className="font-bold tracking-wider text-red-200 drop-shadow-[0_0_12px_rgba(254,202,202,0.9)]"
     >
       {Math.round(progress)}%
     </motion.span>
@@ -154,17 +154,57 @@ const LandingLoader: React.FC = () => {
   const [showTransition, setShowTransition] = useState(false);
   const [displayText, setDisplayText] = useState('');
   const typewriterRef = useRef<NodeJS.Timeout | null>(null);
+  const hasInitializedRef = useRef(false);
+  const isTransitioningRef = useRef(false);
+  const isHomePageRef = useRef(true);
+  const hasCompletedLoaderRef = useRef(false);
+  const shouldShowTransitionRef = useRef(false);
 
-  // Prevent scrolling while loading screen is active
   useEffect(() => {
-    document.body.style.overflow = 'hidden';
+    isHomePageRef.current = window.location.pathname === '/';
+  }, []);
+
+  useEffect(() => {
+    if (hasInitializedRef.current) return;
+    hasInitializedRef.current = true;
+
+    const hasSeenLanding = sessionStorage.getItem('hasSeenLanding');
+    if (hasSeenLanding || !isHomePageRef.current) {
+      setShowLoader(false);
+      setShowTransition(false);
+      hasCompletedLoaderRef.current = false;
+      shouldShowTransitionRef.current = false;
+    } else {
+      sessionStorage.setItem('hasSeenLanding', 'true');
+      shouldShowTransitionRef.current = true;
+    }
+  }, []);
+
+  useEffect(() => {
+    const handleBeforeUnload = () => {
+      sessionStorage.removeItem('hasSeenLanding');
+      hasCompletedLoaderRef.current = false;
+      shouldShowTransitionRef.current = false;
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
     return () => {
-      document.body.style.overflow = 'auto';
+      window.removeEventListener('beforeunload', handleBeforeUnload);
     };
   }, []);
 
-  // Handle typewriter animation
   useEffect(() => {
+    if (showLoader) {
+      document.body.style.overflow = 'hidden';
+    }
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [showLoader]);
+
+  useEffect(() => {
+    if (!showLoader || !isHomePageRef.current) return;
+    
     const text = "Loading your experience...";
     let currentIndex = 0;
 
@@ -180,10 +220,11 @@ const LandingLoader: React.FC = () => {
     return () => {
       if (typewriterRef.current) clearTimeout(typewriterRef.current);
     };
-  }, []);
+  }, [showLoader]);
 
-  // Handle progress animation
   useEffect(() => {
+    if (!showLoader || isTransitioningRef.current || !isHomePageRef.current) return;
+    
     const startTime = Date.now();
     
     const animateProgress = () => {
@@ -196,14 +237,27 @@ const LandingLoader: React.FC = () => {
       } else {
         setProgress(100);
         setTimeout(() => {
-          setShowTransition(true);
-          setShowLoader(false);
+          if (!isTransitioningRef.current && isHomePageRef.current && shouldShowTransitionRef.current) {
+            hasCompletedLoaderRef.current = true;
+            isTransitioningRef.current = true;
+            setShowTransition(true);
+            setShowLoader(false);
+          }
         }, ANIMATION_CONFIG.LOADING_COMPLETE_PAUSE);
       }
     };
 
     requestAnimationFrame(animateProgress);
-  }, []);
+  }, [showLoader]);
+
+  const handleTransitionComplete = () => {
+    setShowTransition(false);
+    isTransitioningRef.current = false;
+  };
+
+  if (!isHomePageRef.current) {
+    return null;
+  }
 
   return (
     <>
@@ -223,10 +277,12 @@ const LandingLoader: React.FC = () => {
           </motion.div>
         )}
       </AnimatePresence>
-      <LandingTransition 
-        isVisible={showTransition} 
-        onTransitionComplete={() => setShowTransition(false)} 
-      />
+      {shouldShowTransitionRef.current && hasCompletedLoaderRef.current && (
+        <LandingTransition 
+          isVisible={showTransition} 
+          onTransitionComplete={handleTransitionComplete} 
+        />
+      )}
     </>
   );
 };
