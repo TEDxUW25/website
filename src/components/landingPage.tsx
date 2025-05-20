@@ -50,7 +50,7 @@ const logoHoverVariants: Variants = {
 const Logo: React.FC = () => (
   <motion.span {...fadeInVariants.up} className="flex items-end relative select-none">
     <motion.span 
-      className="text-red-600 text-8xl md:text-9xl font-extrabold leading-none flex items-end group"
+      className="text-red-600 text-6xl sm:text-7xl md:text-9xl font-extrabold leading-none flex items-end group"
       whileHover="hover"
       variants={logoHoverVariants}
     >
