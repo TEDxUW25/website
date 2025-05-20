@@ -2,8 +2,6 @@
 import { useState } from "react";
 import AuthFormLogin from "./components/AuthFormLogin";
 import AuthFormRegister from "./components/AuthFormRegister";
-import Footer from "@/components/footer";
-
 
 export default function LogIn() {
   
