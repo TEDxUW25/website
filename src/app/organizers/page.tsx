@@ -5,11 +5,10 @@ import TeamBio from "@/components/team_bio";
 import { motion } from "framer-motion";
 import TeamSection from "@/components/team-section";
 
-
 const MeetTheTeamPage: React.FC = () => {
   return (
-    <main className="bg-black text-white px-6 md:px-16 py-60">
-      <section className="flx flex-col md:flex-row items-center md:items-start gap-12 max-w-7xl mx-auto">
+    <main className="bg-black mt-40 text-white px-6 md:px-16 py-16">
+      <section className="flex flex-col md:flex-row items-center md:items-start gap-12 max-w-7xl mx-auto">
         {/* Left Text */}
         <motion.div
           initial={{ opacity: 0, x: -50 }}
@@ -72,10 +71,8 @@ const MeetTheTeamPage: React.FC = () => {
           title="Design Team"
           text="Designing all the posters, banners, screens, slides and visual vibes."
         />
-              <TeamSection />
-
       </section>
-      
+      <TeamSection/>
     </main>
   );
 };
