@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import HeroHome from "@/components/hero";
+import HeroSection from './hero-2';
 
 // Component props and animation configuration
 type LandingTransitionProps = {
@@ -60,7 +60,7 @@ const LandingTransition: React.FC<LandingTransitionProps> = ({ isVisible, onTran
       {isVisible && (
         <>
           <div className="fixed inset-0 z-50">
-            <HeroHome />
+            <HeroSection />
           </div>
           <motion.div
             className="fixed inset-0 bg-[#0a0a0a] z-[60] origin-bottom"

@@ -4,6 +4,10 @@ import { useState, useEffect } from "react";
 import ContactForm from "@/components/contactForm";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { FaFacebookF } from 'react-icons/fa';
+import { FaInstagram } from 'react-icons/fa6';
+import { FaLinkedin } from "react-icons/fa";
+
 
 const quotes = [
   {
@@ -95,36 +99,26 @@ export default function Footer() {
             UWaterloo
           </h1>
         </div>
-        <p className="font-bold text-xs md:text-base xl:text-xl mb-5 text-center">
+        <p className="font-bold text-xs md:text-base xl:text-md mb-5 text-center">
           <span className="text-[#e50409] font-extrabold">x</span> = independently organized
           TED event
         </p>
         {/* Social Media Links */}
         <div className="flex flex-row gap-7 mb-10">
           <Link href="https://www.instagram.com/tedxuw/" target="_blank">
-            <img
-              className="h-10 md:h-12 xl:h-14"
-              src="ig_logo.svg"
-              alt="instagram logo"
-            ></img>
+          <div className="bg-red-500 p-2 rounded-2xl"><FaInstagram/></div>
+            
           </Link>
           <Link href="https://www.linkedin.com/company/tedxuw/" target="_blank">
-            <img
-              className="h-10 md:h-12 xl:h-14"
-              src="linkedin_logo.svg"
-              alt="linkedin logo"
-            ></img>
+          <div className="bg-red-500 p-2 rounded-2xl">< FaLinkedin/></div>
+           
           </Link>
           <Link href="https://www.facebook.com/TEDxUW/" target="_blank">
-            <img
-              className="h-10 md:h-12 xl:h-14"
-              src="fb_logo.svg"
-              alt="facebook logo"
-            ></img>
+          <div className="bg-red-500 p-2 rounded-2xl"><FaFacebookF/></div>
           </Link>
         </div>
         {/* Copyright */}
-        <p className="text-center mt-5 w-[70%] text-sm md:text-base xl:text-lg">
+        <p className="text-center mt-5 w-[70%] text-sm md:text-base xl:text-xs">
           @ 2025 TEDxUW. All righs reserved. This independent TEDx event is
           operated under licence from TED
         </p>
