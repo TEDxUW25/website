@@ -83,3 +83,11 @@ body::-webkit-scrollbar {
       animation: scrollBg 10s linear infinite forwards;
   }
 }
+::-webkit-scrollbar {
+  display: none;
+}
+
+@keyframes fadeOut {
+  0% { opacity: 0.9; transform: scale(1.2); }
+  100% { opacity: 0; transform: scale(0.8); }
+}
