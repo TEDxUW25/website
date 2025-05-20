@@ -17,7 +17,7 @@ export default function SponsorshipHero() {
     <section className="flex flex-col items-center justify-start min-h-screen bg-black text-white relative">
       <SponsorshipHeading cardVisible={cardsInView} />
 
-      <div ref={cardRef}>
+      <div ref={cardRef} className="mt-20">
         <SponsorshipCard />
       </div>
 
