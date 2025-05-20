@@ -3,6 +3,8 @@ import React from "react";
 import Image from "next/image";
 import TeamBio from "@/components/team_bio";
 import { motion } from "framer-motion";
+import TeamSection from "@/components/team-section";
+
 
 const MeetTheTeamPage: React.FC = () => {
   return (
@@ -70,7 +72,10 @@ const MeetTheTeamPage: React.FC = () => {
           title="Design Team"
           text="Designing all the posters, banners, screens, slides and visual vibes."
         />
+              <TeamSection />
+
       </section>
+      
     </main>
   );
 };

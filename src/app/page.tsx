@@ -1,5 +1,4 @@
 import HeroSection from "@/components/hero-2";
-import TeamSection from "@/components/team-section";
 
 import Timeline from "@/components/timeline";
 import Mission from "@/components/mission";
@@ -13,9 +12,7 @@ export default function Home() {
 
         <HeroSection />
         
-        {/* Team section with torn paper style frames */}
-        <TeamSection />
-        
+        {/* Team section with torn paper style frames */}        
       <Mission />
       <Timeline />
 
