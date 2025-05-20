@@ -1,14 +1,20 @@
-'use client'
+'use client';
 import { useEffect, useRef, useState } from 'react';
 
+interface Section {
+  title: string;
+  footnote: string;
+}
+
 export default function HeroSection() {
-  const videoRef = useRef(null);
-  const sectionRefs = useRef([]);
-  const [activeSection, setActiveSection] = useState(0);
-  const containerRef = useRef(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  const [activeSection, setActiveSection] = useState<number>(0);
+  const containerRef = useRef<HTMLDivElement | null>(null);
 
   // Text content for each section
-  const sections = [
+  const sections: Section[] = [
     {
       title: "Step into a world of ideas worth spreading at TEDxUW 2025.",
       footnote: "1"
@@ -26,14 +32,13 @@ export default function HeroSection() {
       footnote: "4"
     }
   ];
-  
 
-  // Set up intersection observer to detect which section is in view
+  // Intersection observer for active section
   useEffect(() => {
-    const options = {
+    const options: IntersectionObserverInit = {
       root: null,
       rootMargin: '0px',
-      threshold: 0.5, // Trigger when element is 50% visible
+      threshold: 0.5,
     };
 
     const observer = new IntersectionObserver((entries) => {
@@ -47,7 +52,6 @@ export default function HeroSection() {
       });
     }, options);
 
-    // Observe all section elements
     sectionRefs.current.forEach(ref => {
       if (ref) observer.observe(ref);
     });
@@ -59,22 +63,24 @@ export default function HeroSection() {
     };
   }, []);
 
-  // Handle smooth scroll logic
-  const handleScroll = (index) => {
-    sectionRefs.current[index].scrollIntoView({
-      behavior: 'smooth',
-      block: 'center'
-    });
+  const handleScroll = (index: number) => {
+    const target = sectionRefs.current[index];
+    if (target) {
+      target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+      });
+    }
   };
 
   return (
     <div className="relative w-full bg-black text-white overflow-hidden">
       {/* Video background */}
-      <video 
+      <video
         ref={videoRef}
-        autoPlay 
-        muted 
-        loop 
+        autoPlay
+        muted
+        loop
         playsInline
         className="absolute top-0 left-0 w-full h-full object-cover opacity-60"
       >
@@ -98,33 +104,34 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* Main content container */}
-      <div 
+      {/* Main content */}
+      <div
         ref={containerRef}
         className="relative min-h-screen z-10 flex flex-col snap-y snap-mandatory overflow-y-auto"
       >
-
-        {/* Text sections that highlight on scroll */}
         {sections.map((section, index) => (
-          <div 
+          <div
             key={index}
-            ref={el => sectionRefs.current[index] = el}
+            ref={(el) => {
+              sectionRefs.current[index] = el;
+            }}
+            
             className="min-h-screen flex items-center justify-center snap-start scroll-mt-0"
           >
             <div className="max-w-4xl px-6 py-24 text-center">
               <h2 className="text-5xl md:text-6xl font-bold leading-tight">
                 <span className={activeSection === index ? 'text-white' : 'text-gray-600'}>
                   {section.title.split(' ').map((word, wordIndex) => (
-                    <span 
-                      key={wordIndex} 
-                      className="transition-all duration-700"
+                    <span
+                      key={wordIndex}
+                      className="transition-all duration-700 inline-block mr-2"
                       style={{
                         opacity: activeSection === index ? 1 : 0.3,
                         transform: activeSection === index ? 'translateY(0)' : 'translateY(20px)',
                         transitionDelay: `${wordIndex * 50}ms`
                       }}
                     >
-                      {word}{' '}
+                      {word}{" "}
                     </span>
                   ))}
                   <sup>{section.footnote}</sup>
