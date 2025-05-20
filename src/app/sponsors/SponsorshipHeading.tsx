@@ -22,14 +22,19 @@ const SponsorshipHeading = ({ cardVisible }: { cardVisible: boolean }) => {
   }, [cardVisible, visibilityValue])
 
   return (
-    <div className="sticky top-15 z-10 w-full bg-black/70 backdrop-blur h-10 sm:h-15 md:h-18 lg:h-30 flex items-center">
+
+
+    <div className="sticky top-20 z-10 w-full  bg-black/70 backdrop-blur h-10
+        sm:h-15 md:h-18 lg:h-full 
+      flex items-center">
       <div className="relative w-full h-full flex items-center">
         {/* Title 1: "BECOME OUR SPONSOR" */}
         <motion.h1
           style={{ opacity: becomeOpacity, x: becomeX }}
           className="absolute inset-0 font-inter text-white uppercase tracking-[0.1em] 
                      text-[7vw] 
-                     leading-tight text-center"
+                     leading-tight text-center
+                     "
         >
           BECOME OUR SPONSOR
         </motion.h1>
