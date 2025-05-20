@@ -1,6 +1,8 @@
-'use client';
-import React from 'react';
-import { Speaker, SPEAKERS } from '@/data/speakers';
+"use client";
+import React from "react";
+import { Speaker, SPEAKERS } from "@/data/speakers";
+import Article from "@/app/speakers/article";
+import Footer from "@/components/footer";
 
 interface FeaturedSpeakerCardProps {
   speaker: Speaker;
@@ -212,6 +214,8 @@ export default function Speakers() {
           </div>
         </div>
       </section>
+      <Article />
+      <Footer />
     </div>
   );
 }

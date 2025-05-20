@@ -13,10 +13,13 @@
   },
   "packageManager": "pnpm@8.15.4",
   "dependencies": {
-    "@netlify/next": "1.4.9",
+    "@netlify/next": "^1.4.9",
+    "framer-motion": "^12.10.4",
+    "gsap": "^3.13.0",
     "next": "15.2.4",
-    "react": "19.0.0",
-    "react-dom": "19.0.0"
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-icons": "^5.5.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "3.0.0",
