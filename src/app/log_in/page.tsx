@@ -35,7 +35,6 @@ export default function LogIn() {
           )}
         </div>
       </div>
-      <Footer/>
     </div>
   );
 }

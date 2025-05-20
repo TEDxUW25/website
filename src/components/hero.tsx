@@ -1,12 +1,13 @@
+/* eslint-disable @next/next/no-img-element */
 'use client'
 import React, { useState, useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
 
 type MouseTrailPoint = {
     id: number;
     x: number;
     y: number;
     image: string;
-    isActive: boolean; // Track if the trail point is active or fading
 };
 
 // reminder to replace w actual image and not link
@@ -18,12 +19,26 @@ const trailImages = [
     "trailed/5.jpg", 
 ];
 
+const fadeUpVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: (delay: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: [0.16, 1, 0.3, 1],
+      delay
+    }
+  })
+};
+
 export default function HeroHome() {
     const containerRef = useRef<HTMLDivElement | null>(null);
     const frameCountRef = useRef<number>(0);
     const lastPositionRef = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
     const [mouseTrail, setMouseTrail] = useState<MouseTrailPoint[]>([]);
     const [isMobile, setIsMobile] = useState<boolean>(false);
+    const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   
     // Check for mobile viewport on component mount and window resize
     useEffect(() => {
