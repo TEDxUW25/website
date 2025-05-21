@@ -1,6 +1,8 @@
-@import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400..700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400..700&display=swap');
 
 :root {
   --background: #000;
@@ -8,13 +10,12 @@
   --button-transition: #E50609;
 }
 
-@theme inline {
+:root {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: 'Inter', sans-serif;
   --font-mono: var(--font-geist-mono);
 }
-
 
 @media (prefers-color-scheme: dark) {
   :root {
@@ -29,6 +30,60 @@ body {
   font-family: var(--font-sans);
 }
 
+body::-webkit-scrollbar {
+  display: none;
+}
+
+.text-block {
+  margin:15vw;
+  max-width:800px;
+  font-family: "Space Mono", monospace;
+  font-weight: 400;
+  font-style: normal;
+  font-size: clamp(16px, 4vw, 40px);
+  color:#fff;
+}
+
+.char {
+  will-change: transform;
+}
+@keyframes fadeOut {
+  0% { opacity: 0.9; transform: scale(1.2); }
+  100% { opacity: 0; transform: scale(0.8); }
+}
+
+.dotted {
+  background-position: 0px 4px;
+  background-size: 8px 8px;
+  background-clip: text;
+  background-image: radial-gradient(
+      circle at 2px 2px,
+      var(--animated-color) 1px,
+      transparent 0
+  );
+  color: transparent;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @property --animated-color {
+      syntax: "<color>";
+      initial-value: oklch(from rgb(117, 0, 0) l c 0deg);
+      inherits: false;
+  }
+
+  @keyframes scrollBg {
+      50% {
+          --animated-color: oklch(from white l c 240deg);
+      }
+      100% {
+          background-position: -32px 4px;
+      }
+  }
+
+  .dotted {
+      animation: scrollBg 10s linear infinite forwards;
+  }
+}
 ::-webkit-scrollbar {
   display: none;
 }
