@@ -29,7 +29,7 @@ const WhatIsTed: React.FC = () => (
         What is <span className="text-red-600">TED</span><span className="text-white">xUW</span> ?
       </h2>
       <p className="text-white text-base md:text-lg text-center max-w-2xl mx-auto mb-4 relative z-10">
-        Founded in 2011, TEDxUW is the University of Waterloo's official TEDx experience. We aim to put the extended UW community onto a new type of global activity map that is being watched, shared, and talked about by the world's top thought leaders.
+        Founded in 2011, TEDxUW is the University of Waterloo&apos;s official TEDx experience. We aim to put the extended UW community onto a new type of global activity map that is being watched, shared, and talked about by the world&apos;s top thought leaders.
       </p>
       {/* Presenter image, absolutely positioned to the right */}
       <div className="hidden md:block absolute right-[-120px] top-0 z-20 h-[220px] w-[180px]">
