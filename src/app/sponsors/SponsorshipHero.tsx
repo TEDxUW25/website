@@ -1,12 +1,6 @@
 "use client"
 
 import React, { useRef } from "react"
-
-
-
-
-
-
 import { useInView } from "framer-motion"
 import SponsorshipHeading from "./SponsorshipHeading"
 import SponsorshipCard from "./SponsorshipCard"
