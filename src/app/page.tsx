@@ -5,11 +5,15 @@ import Mission from "@/components/mission";
 import LandingPage from "@/components/landingPage";
 import PastTalks from "@/components/pastTalks";
 import Achievement from "@/components/achievement";
+import Theme from "@/components/theme";
+import WhatIsTed from "@/components/whatIsTed";
 
 export default function Home() {
   return (
     <div className="font-[family-name:var(--font-sans)]">
       <HeroSection />
+      <Theme />
+      <WhatIsTed />
       <PastTalks />
       <Achievement />
       <Mission />
