@@ -1,0 +1,60 @@
+11:29:28 PM: > next build
+11:29:28 PM:    ▲ Next.js 15.2.4
+11:29:28 PM:    Creating an optimized production build ...
+11:29:34 PM: Failed to compile.
+11:29:34 PM: 
+11:29:34 PM: ./src/app/globals.css
+11:29:34 PM: Module not found: Can't resolve 'tailwindcss'
+11:29:34 PM: https://nextjs.org/docs/messages/module-not-found
+11:29:34 PM: Import trace for requested module:
+11:29:34 PM: ./src/app/globals.css
+11:29:34 PM: ./src/app/globals.css
+11:29:34 PM: Error: Can't resolve 'tailwindcss'
+    at finishWithoutResolve (/opt/build/repo/node_modules/.pnpm/next@15.2.4_react-dom@19.0.0_react@19.0.0/node_modules/next/dist/compiled/webpack/bundle5.js:1:191837)
+11:29:34 PM:     at /opt/build/repo/node_modules/.pnpm/next@15.2.4_react-dom@19.0.0_react@19.0.0/node_modules/next/dist/compiled/webpack/bundle5.js:1:192737
+11:29:34 PM:     at /opt/build/repo/node_modules/.pnpm/next@15.2.4_react-dom@19.0.0_react@19.0.0/node_modules/next/dist/compiled/webpack/bundle5.js:1:193370
+11:29:34 PM:     at eval (eval at create (/opt/build/repo/node_modules/.pnpm/next@15.2.4_react-dom@19.0.0_react@19.0.0/node_modules/next/dist/compiled/webpack/bundle5.js:14:9224), <anonymous>:16:1)
+11:29:34 PM:     at /opt/build/repo/node_modules/.pnpm/next@15.2.4_react-dom@19.0.0_react@19.0.0/node_modules/next/dist/compiled/webpack/bundle5.js:1:193370
+11:29:34 PM:     at eval (eval at create (/opt/build/repo/node_modules/.pnpm/next@15.2.4_react-dom@19.0.0_react@19.0.0/node_modules/next/dist/compiled/webpack/bundle5.js:14:9224), <anonymous>:27:1)
+11:29:34 PM:     at /opt/build/repo/node_modules/.pnpm/next@15.2.4_react-dom@19.0.0_react@19.0.0/node_modules/next/dist/compiled/webpack/bundle5.js:1:175252
+11:29:34 PM:     at /opt/build/repo/node_modules/.pnpm/next@15.2.4_react-dom@19.0.0_react@19.0.0/node_modules/next/dist/compiled/webpack/bundle5.js:1:193370
+11:29:34 PM:     at eval (eval at create (/opt/build/repo/node_modules/.pnpm/next@15.2.4_react-dom@19.0.0_react@19.0.0/node_modules/next/dist/compiled/webpack/bundle5.js:14:9224), <anonymous>:16:1)
+11:29:34 PM:     at /opt/build/repo/node_modules/.pnpm/next@15.2.4_react-dom@19.0.0_react@19.0.0/node_modules/next/dist/compiled/webpack/bundle5.js:1:208998
+11:29:34 PM: https://nextjs.org/docs/messages/module-not-found
+11:29:34 PM: > Build failed because of webpack errors
+11:29:34 PM:  ELIFECYCLE  Command failed with exit code 1. (https://ntl.fyi/exit-code-1)
+11:29:34 PM: ​
+11:29:34 PM: "build.command" failed                                        
+11:29:34 PM: ────────────────────────────────────────────────────────────────
+11:29:34 PM: ​
+11:29:34 PM:   Error message
+11:29:34 PM:   Command failed with exit code 1: pnpm install && pnpm run build (https://ntl.fyi/exit-code-1)
+11:29:34 PM: ​
+11:29:34 PM:   Error location
+11:29:34 PM:   In build.command from netlify.toml:
+11:29:34 PM:   pnpm install && pnpm run build
+11:29:34 PM: ​
+11:29:34 PM:   Resolved config
+11:29:34 PM:   build:
+11:29:34 PM:     command: pnpm install && pnpm run build
+11:29:34 PM:     commandOrigin: config
+11:29:34 PM:     environment:
+11:29:34 PM:       - REVIEW_ID
+11:29:34 PM:       - NODE_VERSION
+11:29:34 PM:       - NPM_FLAGS
+11:29:34 PM:       - NPM_USE_LOCAL
+11:29:34 PM:     publish: /opt/build/repo/.next
+11:29:34 PM:     publishOrigin: config
+11:29:34 PM:   functions:
+11:29:34 PM:     '*':
+11:29:34 PM:       external_node_modules:
+11:29:34 PM:         - '@netlify/plugin-nextjs'
+11:29:34 PM:       node_bundler: esbuild
+11:29:34 PM:   plugins:
+11:29:34 PM:     - inputs: {}
+11:29:34 PM:       origin: config
+11:29:34 PM:       package: '@netlify/plugin-nextjs'
+11:29:35 PM: Failed during stage 'building site': Build script returned non-zero exit code: 2 (https://ntl.fyi/exit-code-2)
+11:29:35 PM: Build failed due to a user error: Build script returned non-zero exit code: 2
+11:29:35 PM: Failing build: Failed to build site
+11:29:35 PM: Finished processing build request in 40.163s
