@@ -19,7 +19,7 @@ const ImpactPage: React.FC = () => {
         ]}
       />
 
-      <div className="my-12 w-screen max-w-none px-8 sm:px-16">
+      <div className="my-12 w-full max-w-none px-8 sm:px-16">
         <motion.div
           initial={{ scale: 0.01, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}

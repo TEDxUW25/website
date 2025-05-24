@@ -23,7 +23,7 @@ export default function Article() {
       {/* Medium Page/Image*/}
       <div className="flex justify-center items-center my-[3%] border-2 sm:border-4 border-black md:border-0 md:p-3 xl:p-5 md:hover:bg-black md:duration-300">
         <a className="w-full" href="https://medium.com/@tedxuw" target="_blank">
-          <img className="w-full" src="medium.png" />
+          <img className="w-full" src="medium.png" alt="tedxuw medium page" />
         </a>
       </div>
       {/* Article Preview Links */}
