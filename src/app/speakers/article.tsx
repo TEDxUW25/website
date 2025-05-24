@@ -9,7 +9,7 @@ export default function Article() {
   return (
     <div className="w-full h-full p-[7%]">
       <div
-        className={`${inter.className} text-white text-sm sm:text-xl md:text-2xl xl:text-4xl flex flex-row justify-between items-center tracking-widest`}
+        className={`${inter.className} text-sm sm:text-xl md:text-2xl xl:text-4xl flex flex-row justify-between items-center tracking-widest`}
       >
         <h1 className="font-bold">Excited ?</h1>
         <Link href="buy_ticket">
@@ -21,7 +21,7 @@ export default function Article() {
         </Link>
       </div>
       {/* Medium Page/Image*/}
-      <div className="flex justify-center items-center my-[3%]">
+      <div className="flex justify-center items-center my-[3%] border-2 sm:border-4 border-black md:border-0 md:p-3 xl:p-5 md:hover:bg-black md:duration-300">
         <a className="w-full" href="https://medium.com/@tedxuw" target="_blank">
           <img className="w-full" src="medium.png" />
         </a>
