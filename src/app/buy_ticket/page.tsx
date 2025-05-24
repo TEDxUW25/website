@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 const renderPaymentUI = () => {
   return null
   // When the countdown is complete, the payment UI can go here I guess (Whoever has Payement UI ticket)
-};
+}; 
 
 const TimeUnit = ({ value, label }: { value: string, label: string }) => {
   const [prevValue, setPrevValue] = useState(value);
