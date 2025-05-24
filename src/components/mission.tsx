@@ -20,7 +20,7 @@ export default function Mission() {
         </div>
 
         {/* left text */}
-        <div className="col-start-1 row-start-2 w-14 sm:w-16 md:w-20 xl:w-24 flex justify-center items-center">
+        <div className="col-start-1 row-start-2 w-12 sm:w-16 md:w-20 xl:w-24 flex justify-center items-center">
           <h1 className="transform -rotate-90 whitespace-nowrap">Hover Me</h1>
         </div>
 
@@ -49,7 +49,7 @@ export default function Mission() {
               <h1 className="text-sm sm:text-lg md:text-2xl xl:text-3xl font-bold text-[#e50409] xl:py-3">
                 Our Mission
               </h1>
-              <p className="text-[10px] sm:text-xs md:text-base xl:text-lg px-4 md:px-8 xl:px-12">
+              <p className="text-[10px] leading-normal sm:text-xs md:text-base xl:text-lg px-4 md:px-8 xl:px-12">
                 <br />
                 Dear all,
                 <br />
@@ -73,7 +73,7 @@ export default function Mission() {
         </div>
 
         {/* right text */}
-        <div className="col-start-3 row-start-2 w-14 sm:w-16 md:w-20 xl:w-24 flex justify-center items-center">
+        <div className="col-start-3 row-start-2 w-12 sm:w-16 md:w-20 xl:w-24 flex justify-center items-center">
           <h1 className="transform rotate-90 whitespace-nowrap">Hover Me</h1>
         </div>
       </div>
