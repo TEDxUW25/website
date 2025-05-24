@@ -71,8 +71,8 @@ export default function Year(props: YearProps) {
         cupiditate expedita dicta, aliquam dolore molestiae quo sed sequi ad!
       </p>
       <img
-        className={`border-y-2 border-x-1 border-white w-full filter duration-300 transition-all ease-in-out ${
-          isGrey ? "grayscale-100" : ""
+        className={`border-y-2 border-x-[1px] border-white w-full filter duration-300 transition-all ease-in-out ${
+          isGrey ? "grayscale" : ""
         }`}
         ref={imgRef}
         src={props.image}
@@ -80,7 +80,7 @@ export default function Year(props: YearProps) {
       />
       {/* Red box for timeline events */}
       <motion.div
-        className="absolute bottom-0 bg-[#e50409] w-full min-h-[20%] h-auto overflow-y-scroll border-y-2 border-x-1 border-white flex flex-col justify-center items-center"
+        className="absolute bottom-0 bg-[#e50409] w-full min-h-[20%] h-auto overflow-y-scroll border-y-2 border-x-[1px] border-white flex flex-col justify-center items-center"
         style={{ maxHeight: imgHeight ? `${imgHeight + 4}px` : undefined }}
         whileHover={!isSmallScreen ? "hover" : undefined}
         initial="initial"
