@@ -41,7 +41,7 @@ export default function Footer() {
 
   return (
     <div className="w-full flex flex-col justify-center items-center">
-      <h1 className="font-bold text-center text-xl md:text-3xl xl:text-5xl xl:p-15 mt-10 md:mt-20">
+      <h1 className="font-bold text-center text-xl md:text-3xl xl:text-3xl xl:p-15 mt-10 md:mt-20">
         Frequently Asked Questions
       </h1>
       <FAQ />
