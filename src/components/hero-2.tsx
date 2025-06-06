@@ -129,7 +129,6 @@ export default function HeroSection() {
                       {word}{" "}
                     </span>
                   ))}
-                  <sup>{section.footnote}</sup>
                 </span>
               </h2>
             </div>
