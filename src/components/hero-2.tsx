@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
+import { AnimatePresence, motion } from "framer-motion";
 
 interface Section {
   title: string;
@@ -8,24 +9,18 @@ interface Section {
 export default function HeroSection() {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const lastSectionRef = useRef<HTMLDivElement | null>(null);
 
   const [activeSection, setActiveSection] = useState<number>(0);
+  const [lastSectionInView, setLastSectionInView] = useState(true);
   const containerRef = useRef<HTMLDivElement | null>(null);
 
   // Text content for each section
   const sections: Section[] = [
-    {
-      title: "Step into a world of ideas worth spreading at TEDxUW 2025."
-    },
-    {
-      title: "Discover voices that challenge convention and ignite curiosity."
-    },
-    {
-      title: "Experience talks that connect passion, purpose, and possibility."
-    },
-    {
-      title: "Join the movement. Inspire change. Be part of something bigger."
-    }
+    { title: "Step into a world of ideas worth spreading at TEDxUW 2025." },
+    { title: "Discover voices that challenge convention and ignite curiosity." },
+    { title: "Experience talks that connect passion, purpose, and possibility." },
+    { title: "Join the movement. Inspire change. Be part of something bigger." }
   ];
 
   // Intersection observer for active section
@@ -58,6 +53,17 @@ export default function HeroSection() {
     };
   }, []);
 
+  // Intersection observer for last section
+  useEffect(() => {
+    if (!lastSectionRef.current) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setLastSectionInView(entry.isIntersecting),
+      { threshold: 0.5 }
+    );
+    observer.observe(lastSectionRef.current);
+    return () => observer.disconnect();
+  }, []);
+
   const handleScroll = (index: number) => {
     const target = sectionRefs.current[index];
     if (target) {
@@ -83,21 +89,32 @@ export default function HeroSection() {
         Your browser does not support the video tag.
       </video>
 
-      {/* Navigation dots */}
-      <div className="absolute right-8 top-1/2 transform -translate-y-1/2 z-20">
-        <div className="flex flex-col gap-4">
-          {sections.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => handleScroll(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                activeSection === index ? 'bg-white scale-125' : 'bg-gray-500'
-              }`}
-              aria-label={`Go to section ${index + 1}`}
-            />
-          ))}
-        </div>
-      </div>
+      {/* Navigation dots with fade animation */}
+      <AnimatePresence>
+        {(lastSectionInView || activeSection != sections.length - 1) && (
+          <motion.div
+            key="nav-dots"
+            initial={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.3 }}
+            className="fixed right-8 top-1/2 transform -translate-y-1/2 z-20"
+          >
+            <div className="flex flex-col gap-4">
+              {sections.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => handleScroll(index)}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    activeSection === index ? 'bg-white scale-125' : 'bg-gray-500'
+                  }`}
+                  aria-label={`Go to section ${index + 1}`}
+                />
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Main content */}
       <div
@@ -107,10 +124,10 @@ export default function HeroSection() {
         {sections.map((section, index) => (
           <div
             key={index}
-            ref={(el) => {
+            ref={el => {
               sectionRefs.current[index] = el;
+              if (index === sections.length - 1) lastSectionRef.current = el;
             }}
-            
             className="min-h-screen flex items-center justify-center snap-start scroll-mt-0"
           >
             <div className="max-w-4xl px-6 py-24 text-center">
