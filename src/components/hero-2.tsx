@@ -3,7 +3,6 @@ import { useEffect, useRef, useState } from 'react';
 
 interface Section {
   title: string;
-  footnote: string;
 }
 
 export default function HeroSection() {
@@ -16,20 +15,16 @@ export default function HeroSection() {
   // Text content for each section
   const sections: Section[] = [
     {
-      title: "Step into a world of ideas worth spreading at TEDxUW 2025.",
-      footnote: "1"
+      title: "Step into a world of ideas worth spreading at TEDxUW 2025."
     },
     {
-      title: "Discover voices that challenge convention and ignite curiosity.",
-      footnote: "2"
+      title: "Discover voices that challenge convention and ignite curiosity."
     },
     {
-      title: "Experience talks that connect passion, purpose, and possibility.",
-      footnote: "3"
+      title: "Experience talks that connect passion, purpose, and possibility."
     },
     {
-      title: "Join the movement. Inspire change. Be part of something bigger.",
-      footnote: "4"
+      title: "Join the movement. Inspire change. Be part of something bigger."
     }
   ];
 
