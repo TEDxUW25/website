@@ -98,14 +98,14 @@ export default function HeroSection() {
             exit={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.3 }}
-            className="fixed right-8 top-1/2 transform -translate-y-1/2 z-20"
+            className="fixed right-2.5 md:right-8 top-1/2 transform -translate-y-1/2 z-20"
           >
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-3 md:gap-4">
               {sections.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => handleScroll(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  className={`w-1.5 h-1.5 md:w-3 md:h-3 rounded-full transition-all duration-300 ${
                     activeSection === index ? 'bg-white scale-125' : 'bg-gray-500'
                   }`}
                   aria-label={`Go to section ${index + 1}`}
@@ -131,7 +131,7 @@ export default function HeroSection() {
             className="min-h-screen flex items-center justify-center snap-start scroll-mt-0"
           >
             <div className="max-w-4xl px-6 py-24 text-center">
-              <h2 className="text-5xl md:text-6xl font-bold leading-tight">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
                 <span className={activeSection === index ? 'text-white' : 'text-gray-600'}>
                   {section.title.split(' ').map((word, wordIndex) => (
                     <span
