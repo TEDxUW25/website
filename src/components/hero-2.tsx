@@ -130,8 +130,8 @@ export default function HeroSection() {
             }}
             className="min-h-screen flex items-center justify-center snap-start scroll-mt-0"
           >
-            <div className="max-w-4xl px-6 py-24 text-center">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+            <div className="max-w-7xl px-6 py-24 text-center">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold leading-tight">
                 <span className={activeSection === index ? 'text-white' : 'text-gray-600'}>
                   {section.title.split(' ').map((word, wordIndex) => (
                     <span
