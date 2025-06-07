@@ -32,7 +32,7 @@ const PastTalkCard: React.FC<PastTalkCardProps> = ({ title, desc, youtube }) => 
       href={youtube}
       target="_blank"
       rel="noopener noreferrer"
-      className="block rounded-lg shadow-md w-full aspect-video relative overflow-hidden group border border-gray-200 hover:border-red-400 cursor-pointer"
+      className="block rounded-lg shadow-md w-full h-full relative overflow-hidden group border border-gray-200 hover:border-red-400 cursor-pointer"
     >
       {/* Thumbnail */}
       {thumbnail && (
