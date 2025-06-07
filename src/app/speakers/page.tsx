@@ -10,10 +10,17 @@ interface FeaturedSpeakerCardProps {
 const FeaturedSpeakerCard: React.FC<FeaturedSpeakerCardProps> = ({
   speaker,
 }) => {
+  const handleClick = () => {
+    window.open('https://www.google.com', '_blank');
+  };
+
   return (
     <div className="flex flex-col">
       {/* Image card with hover zoom effect */}
-      <div className="w-full aspect-[3/4] rounded-none overflow-hidden shadow-xl group cursor-pointer">
+      <div 
+        className="w-full aspect-[3/4] rounded-none overflow-hidden shadow-xl group cursor-pointer" 
+        onClick={handleClick}
+      >
         {speaker.imageUrl ? (
           <img
             src={speaker.imageUrl}
@@ -60,8 +67,15 @@ interface RegularSpeakerCardProps {
 }
 
 const RegularSpeakerCard: React.FC<RegularSpeakerCardProps> = ({ speaker }) => {
+  const handleClick = () => {
+    window.open('https://www.google.com', '_blank');
+  };
+  
   return (
-    <div className="relative w-full aspect-[3/5] sm:aspect-[2/3] flex rounded-none overflow-hidden shadow-lg group cursor-pointer">
+    <div 
+      className="relative w-full aspect-[3/5] sm:aspect-[2/3] flex rounded-none overflow-hidden shadow-lg group cursor-pointer"
+      onClick={handleClick}
+    >
       {/* Red left side - moves slightly left on hover */}
       <div className="w-1/2 bg-red-600 flex flex-col justify-between p-5 transition-transform duration-300 ease-in-out group-hover:-translate-x-2 z-10">
         {/* Top: Person Name */}
