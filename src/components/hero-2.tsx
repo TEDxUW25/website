@@ -56,8 +56,11 @@ export default function HeroSection() {
       if (ref) observer.observe(ref);
     });
 
+    // Store a reference to the current sectionRefs to use in cleanup
+    const currentRefs = [...sectionRefs.current];
+
     return () => {
-      sectionRefs.current.forEach(ref => {
+      currentRefs.forEach(ref => {
         if (ref) observer.unobserve(ref);
       });
     };

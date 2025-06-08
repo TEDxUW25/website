@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import Image from 'next/image';
 import PastTalkCard from './pastTalkCard';
-import { motion, AnimatePresence, useAnimation, useMotionValue } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 // Example data: add your real YouTube links, titles, and descriptions
 const pastTalks = [
@@ -31,12 +31,6 @@ const PastTalks: React.FC = () => {
   const carouselRef = useRef<HTMLDivElement>(null);
   const autoPlaySpeed = 5000; // 5 seconds per slide
   const totalSlides = Math.ceil(pastTalks.length / 3); // 3 cards per slide
-  const [isMounted, setIsMounted] = useState(false);
-  
-  // Handle initial mount to avoid height issues with SSR
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
 
   // Handle navigation
   const handleNext = () => {
@@ -60,7 +54,7 @@ const PastTalks: React.FC = () => {
     }, autoPlaySpeed);
 
     return () => clearInterval(interval);
-  }, [currentIndex]);
+  }, [currentIndex, handleNext]);
 
   // Create slides - 3 cards per slide
   const slides = [];
@@ -234,5 +228,3 @@ const PastTalks: React.FC = () => {
 };
 
 export default PastTalks;
-
-
