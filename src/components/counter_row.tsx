@@ -11,9 +11,10 @@ interface Stat {
 
 interface Props {
   stats: Stat[];
+  trigger: boolean;
 }
 
-const CounterRow: React.FC<Props> = ({ stats }) => {
+const CounterRow: React.FC<Props> = ({ stats, trigger }) => {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 max-w-4xl mx-auto text-center">
       {stats.map((stat, index) => (
@@ -22,6 +23,7 @@ const CounterRow: React.FC<Props> = ({ stats }) => {
             target={stat.target}
             prefix={stat.prefix}
             suffix={stat.suffix}
+            trigger={trigger}
           />
           <p className="mt-2 text-sm text-white">{stat.label}</p>
         </div>
