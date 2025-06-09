@@ -2,9 +2,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from "framer-motion";
 
-interface Section {
-  title: string;
-}
+interface Section { title: string }
 
 export default function HeroSection() {
   const videoRef = useRef<HTMLVideoElement | null>(null);
@@ -75,7 +73,10 @@ export default function HeroSection() {
   };
 
   return (
-    <div className="relative w-full bg-black text-white overflow-hidden">
+    <div
+      id="hero-section"
+      className="relative w-full bg-black text-white overflow-hidden"
+    >
       {/* Video background */}
       <video
         ref={videoRef}
@@ -84,6 +85,7 @@ export default function HeroSection() {
         loop
         playsInline
         className="absolute top-0 left-0 w-full h-full object-cover opacity-60"
+        style={{ pointerEvents: "auto" }}
       >
         <source src="promo_vid.mov" type="video/mp4" />
         Your browser does not support the video tag.

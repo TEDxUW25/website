@@ -9,8 +9,11 @@ import Theme from "@/components/theme";
 import WhatIsTed from "@/components/whatIsTed";
 import ImpactPage from "./impact/page";
 import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+  const router = useRouter();
+
   useEffect(() => {
     if ('scrollRestoration' in window.history) {
       window.history.scrollRestoration = 'manual';
@@ -31,6 +34,13 @@ export default function Home() {
       <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
         <LandingPage />
       </footer>
+      <button
+        className="fixed z-50 bottom-6 right-6 bg-[#d41102]/80 text-white rounded-2xl px-7 py-4 text-lg shadow-lg"
+        style={{ width: "auto" }}
+        onClick={() => router.push("/buy_ticket")}
+      >
+        Buy Tickets &bull; Nov XXX, 2025 &bull; Hagey Hall
+      </button>
     </div>
   );
 }
