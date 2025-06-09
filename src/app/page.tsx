@@ -35,7 +35,7 @@ export default function Home() {
         <LandingPage />
       </footer>
       <button
-        className="fixed z-50 bottom-5 left-1/2 -translate-x-1/2 sm:bottom-6 sm:right-6 sm:left-auto sm:translate-x-0 bg-[#d41102]/80 text-white rounded-lg sm:rounded-2xl px-3 py-2 sm:px-7 sm:py-4 text-sm sm:text-lg shadow-lg w-auto whitespace-nowrap"
+        className="fixed z-50 bottom-5 left-1/2 -translate-x-1/2 sm:bottom-6 sm:right-6 sm:left-auto sm:translate-x-0 bg-[#bd1104]/80 text-white rounded-lg sm:rounded-2xl px-3 py-2 sm:px-7 sm:py-4 text-sm sm:text-lg shadow-lg w-auto whitespace-nowrap"
         style={{ width: "auto" }}
         onClick={() => router.push("/buy_ticket")}
       >
