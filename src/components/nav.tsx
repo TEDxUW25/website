@@ -2,6 +2,10 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import Login from "./login";
+
+
+
 
 interface Nav {
   name: string,
@@ -148,12 +152,11 @@ export default function NavBar() {
                 <button className="w-full bg-red-500 text-white py-3 rounded-md font-medium">
                   Buy Tickets
                 </button>
-              </Link>
-              <Link href="/log_in" className="block" onClick={toggleMenu}>
-                <button className="w-full bg-white text-black border border-black py-3 rounded-md font-medium">
-                  Log In
-                </button>
-              </Link>
+              </Link>  
+            
+            {/* Login Component */}
+            <Login/>
+            
             </div>
           </div>
           <div className="flex flex-row justify-between text-gray-500 mt-auto pt-4 w-full border-t border-gray-200">
@@ -186,11 +189,10 @@ export default function NavBar() {
               Buy Ticket
             </button>
           </Link> 
-          <Link href="/log_in">
-            <button className={`hover:underline underline-offset-2 transition ease-in-out pt-2 text-white`}>
-              Log In
-            </button>
-          </Link>
+        
+          {/* Login Component */}
+          <Login/>
+          
         </div>
       </motion.div>
     </div>
