@@ -5,15 +5,23 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 
 const Theme: React.FC = () => (
-  <section className="relative w-full h-[520px] md:h-[700px] flex items-center justify-center overflow-hidden bg-black">
-    {/* Background image */}
-    <Image
-      src="/2025theme.png"
-      alt="2025 Theme"
-      fill
-      className="object-cover object-center z-0"
-      priority
-    />
+  <section className="relative w-full h-screen flex items-center justify-center overflow-hidden bg-black">
+    {/* Animated Background */}
+    <motion.div
+      className="absolute inset-0 z-0"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ duration: 1.2, ease: 'easeOut' }}
+      viewport={{ once: false, amount: 0.3 }}
+    >
+      <Image
+        src="/2025theme.png"
+        alt="2025 Theme"
+        fill
+        className="object-cover object-center"
+        priority
+      />
+    </motion.div>
     {/* Overlay */}
     <div className="absolute inset-0 flex flex-col justify-center items-center z-10 px-4">
       <motion.div
