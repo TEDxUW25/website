@@ -100,7 +100,7 @@ const Theme: React.FC = () => (
             <span key={wordI} style={{ whiteSpace: 'nowrap' }}>
               {word.split('').map((char, charI) => (
                 <motion.span
-                  style={{ display: 'inline-block' }}
+                  style={{ display: 'inline-block', paddingBottom: '1.2em' }}
                   variants={letter}
                   key={`${char}-${charI}`}
                 >
