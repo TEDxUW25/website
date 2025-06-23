@@ -83,54 +83,62 @@ const Theme: React.FC = () => (
           transition={{ duration: 0.7, ease: 'easeOut', delay: 1.8 }}
           viewport={{ once: true }}
         >
-          <span className="text-white text-2xl md:text-3xl font-semibold tracking-wide">
+          <span className="text-white text-xl sm:text-2xl md:text-3xl font-semibold tracking-wide">
             TEDxUW 2025 Talks
           </span>
         </motion.div>
 
         {/* Center title */}
         <motion.h1
-          className=" text-white text-5xl md:text-[6rem] font-bold text-center drop-shadow-xl tracking-wide"
+          className="text-white text-4xl sm:text-5xl md:text-[6rem] lg:text-[7rem] font-bold text-center drop-shadow-xl tracking-wide flex flex-col md:flex-row md:gap-x-4 items-center justify-center"
           variants={sentence}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.8 }}
         >
-          {title.split('').map((char, index) => (
-            <motion.span style={{ display: 'inline-block', paddingBottom: '1.2em' }} variants={letter} key={`${char}-${index}`}>
-              {char === ' ' ? '\u00A0' : char}
-            </motion.span>
+          {title.split(' ').map((word, wordI) => (
+            <span key={wordI} style={{ whiteSpace: 'nowrap' }}>
+              {word.split('').map((char, charI) => (
+                <motion.span
+                  style={{ display: 'inline-block' }}
+                  variants={letter}
+                  key={`${char}-${charI}`}
+                >
+                  {char}
+                </motion.span>
+              ))}
+            </span>
           ))}
         </motion.h1>
 
         {/* Left info */}
         <motion.div
-          className="absolute bottom-[30%] left-[5%] md:left-[10%] flex flex-col items-start"
+          className="absolute bottom-[22%] sm:bottom-[28%] md:bottom-[30%] left-[5%] md:left-[10%] lg:left-[15%] flex flex-col items-start"
           initial={{ opacity: 0, x: -40 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7, ease: 'easeOut', delay: 1.8 }}
           viewport={{ once: true }}
         >
-          <span className="text-white text-xl md:text-2xl font-bold">October 6th, 2024</span>
-          <span className="text-white text-xl md:text-2xl font-bold">1 PM - 4 PM</span>
-          <span className="text-white text-base opacity-80 mt-2">Calendar</span>
+          <span className="text-white text-md sm:text-xl md:text-2xl font-bold">October 6th, 2024</span>
+          <span className="text-white text-md sm:text-xl md:text-2xl font-bold">1 PM - 4 PM</span>
+          <span className="text-white text-xs sm:text-base opacity-80 mt-2">Calendar</span>
         </motion.div>
 
         {/* Right info */}
         <motion.div
-          className="absolute bottom-[25%] right-[5%] md:right-[10%] flex flex-col items-end"
+          className="absolute bottom-[10%] md:bottom-[22%] right-[5%] md:right-[10%] lg:right-[15%] flex flex-col items-end"
           initial={{ opacity: 0, x: 40 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7, ease: 'easeOut', delay: 1.8 }}
           viewport={{ once: true }}
         >
-          <span className="text-white text-xl md:text-2xl font-bold text-right">
+          <span className="text-white text-md sm:text-xl md:text-2xl font-bold text-right">
             Hagey Hall Humanity Theatre
           </span>
-          <span className="text-white text-md md:text-lg text-right">
+          <span className="text-white text-xs sm:text-md md:text-lg text-right">
             200 University Street West, Waterloo, Postal
           </span>
-          <span className="text-white text-base opacity-80 mt-2">Google Maps</span>
+          <span className="text-white text-xs sm:text-base opacity-80 mt-2">Google Maps</span>
         </motion.div>
       </div>
     </div>
