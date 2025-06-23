@@ -10,7 +10,7 @@ const sentence = {
     opacity: 1,
     transition: {
       delay: 1.2, // Start after panels reveal
-      staggerChildren: 0.1,
+      staggerChildren: 0.04,
     },
   },
 };
@@ -36,21 +36,21 @@ const Theme: React.FC = () => (
   <section className="relative w-full h-screen flex items-center justify-center overflow-hidden bg-black">
     {/* Revealing Color Panels */}
     <motion.div
-      className="absolute top-0 left-0 w-full h-full bg-[#fecaca] z-50" // Rose
+      className="absolute top-0 left-0 w-full h-full bg-black z-50" 
       initial={{ y: 0 }}
       whileInView={{ y: '-100%' }}
       transition={{ duration: 0.8, ease: 'easeInOut', delay: 0 }}
       viewport={{ once: true, amount: 0.1 }}
     />
     <motion.div
-      className="absolute top-0 left-0 w-full h-full bg-[#1e293b] z-40" // Slate
+      className="absolute top-0 left-0 w-full h-full bg-[#3e0000] z-40" 
       initial={{ y: 0 }}
       whileInView={{ y: '-100%' }}
       transition={{ duration: 0.8, ease: 'easeInOut', delay: 0.2 }}
       viewport={{ once: true, amount: 0.1 }}
     />
     <motion.div
-      className="absolute top-0 left-0 w-full h-full bg-[#a7f3d0] z-30" // Emerald
+      className="absolute top-0 left-0 w-full h-full bg-[#9c1417] z-30" 
       initial={{ y: 0 }}
       whileInView={{ y: '-100%' }}
       transition={{ duration: 0.8, ease: 'easeInOut', delay: 0.4 }}
@@ -80,7 +80,7 @@ const Theme: React.FC = () => (
           className="absolute top-10 flex justify-center w-full"
           initial={{ opacity: 0, y: -30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: 'easeOut', delay: 2.2 }}
+          transition={{ duration: 0.7, ease: 'easeOut', delay: 1.8 }}
           viewport={{ once: true }}
         >
           <span className="text-white text-2xl md:text-3xl font-semibold tracking-wide">
@@ -90,7 +90,7 @@ const Theme: React.FC = () => (
 
         {/* Center title */}
         <motion.h1
-          className=" text-white text-5xl md:text-[6rem] font-semibold text-center drop-shadow-xl"
+          className=" text-white text-5xl md:text-[6rem] font-bold text-center drop-shadow-xl tracking-wide"
           variants={sentence}
           initial="hidden"
           whileInView="visible"
@@ -108,7 +108,7 @@ const Theme: React.FC = () => (
           className="absolute bottom-[30%] left-[5%] md:left-[10%] flex flex-col items-start"
           initial={{ opacity: 0, x: -40 }}
           whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7, ease: 'easeOut', delay: 2.2 }}
+          transition={{ duration: 0.7, ease: 'easeOut', delay: 1.8 }}
           viewport={{ once: true }}
         >
           <span className="text-white text-xl md:text-2xl font-bold">October 6th, 2024</span>
@@ -121,7 +121,7 @@ const Theme: React.FC = () => (
           className="absolute bottom-[25%] right-[5%] md:right-[10%] flex flex-col items-end"
           initial={{ opacity: 0, x: 40 }}
           whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7, ease: 'easeOut', delay: 2.2 }}
+          transition={{ duration: 0.7, ease: 'easeOut', delay: 1.8 }}
           viewport={{ once: true }}
         >
           <span className="text-white text-xl md:text-2xl font-bold text-right">
