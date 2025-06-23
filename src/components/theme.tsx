@@ -4,8 +4,59 @@ import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 
+const sentence = {
+  hidden: { opacity: 1 },
+  visible: {
+    opacity: 1,
+    transition: {
+      delay: 1.2, // Start after panels reveal
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const letter = {
+  hidden: {
+    y: '100%',
+    clipPath: 'polygon(0 100%, 100% 100%, 100% 100%, 0 100%)',
+  },
+  visible: {
+    y: '0%',
+    clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)',
+    transition: {
+      ease: [0.455, 0.03, 0.515, 0.955],
+      duration: 1.2,
+    },
+  },
+};
+
+const title = 'Everything Reimagined';
+
 const Theme: React.FC = () => (
   <section className="relative w-full h-screen flex items-center justify-center overflow-hidden bg-black">
+    {/* Revealing Color Panels */}
+    <motion.div
+      className="absolute top-0 left-0 w-full h-full bg-[#fecaca] z-50" // Rose
+      initial={{ y: 0 }}
+      whileInView={{ y: '-100%' }}
+      transition={{ duration: 0.8, ease: 'easeInOut', delay: 0 }}
+      viewport={{ once: true, amount: 0.1 }}
+    />
+    <motion.div
+      className="absolute top-0 left-0 w-full h-full bg-[#1e293b] z-40" // Slate
+      initial={{ y: 0 }}
+      whileInView={{ y: '-100%' }}
+      transition={{ duration: 0.8, ease: 'easeInOut', delay: 0.2 }}
+      viewport={{ once: true, amount: 0.1 }}
+    />
+    <motion.div
+      className="absolute top-0 left-0 w-full h-full bg-[#a7f3d0] z-30" // Emerald
+      initial={{ y: 0 }}
+      whileInView={{ y: '-100%' }}
+      transition={{ duration: 0.8, ease: 'easeInOut', delay: 0.4 }}
+      viewport={{ once: true, amount: 0.1 }}
+    />
+
     {/* Animated Background */}
     <motion.div
       className="absolute inset-0 z-0"
@@ -23,49 +74,62 @@ const Theme: React.FC = () => (
       />
     </motion.div>
     {/* Overlay */}
-    <div className="absolute inset-0 flex flex-col justify-center items-center z-10 px-4">
-      <motion.div
-        className="absolute top-10 left-0 right-0 flex justify-center"
-        initial={{ opacity: 0, y: -30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, ease: 'easeOut' }}
-        viewport={{ once: true }}
-      >
-        <span className="text-white text-2xl md:text-3xl font-semibold tracking-wide">TEDxUW 2025 Talks</span>
-      </motion.div>
-      <div className="flex w-full items-center justify-between px-8 md:px-20" style={{height: '100%'}}>
+    <div className="absolute inset-0 z-10">
+      <div className="relative w-full h-full flex items-center justify-center p-4">
+        <motion.div
+          className="absolute top-10 flex justify-center w-full"
+          initial={{ opacity: 0, y: -30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: 'easeOut', delay: 2.2 }}
+          viewport={{ once: true }}
+        >
+          <span className="text-white text-2xl md:text-3xl font-semibold tracking-wide">
+            TEDxUW 2025 Talks
+          </span>
+        </motion.div>
+
+        {/* Center title */}
+        <motion.h1
+          className=" text-white text-5xl md:text-[6rem] font-semibold text-center drop-shadow-xl"
+          variants={sentence}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.8 }}
+        >
+          {title.split('').map((char, index) => (
+            <motion.span style={{ display: 'inline-block', paddingBottom: '1.2em' }} variants={letter} key={`${char}-${index}`}>
+              {char === ' ' ? '\u00A0' : char}
+            </motion.span>
+          ))}
+        </motion.h1>
+
         {/* Left info */}
         <motion.div
-          className="flex flex-col items-start justify-center h-full"
+          className="absolute bottom-[30%] left-[5%] md:left-[10%] flex flex-col items-start"
           initial={{ opacity: 0, x: -40 }}
           whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7, ease: 'easeOut', delay: 0.2 }}
+          transition={{ duration: 0.7, ease: 'easeOut', delay: 2.2 }}
           viewport={{ once: true }}
         >
-          <span className="text-white text-2xl md:text-3xl font-bold mb-1">October 6th, 2024</span>
-          <span className="text-white text-2xl md:text-3xl font-bold">1 PM - 4 PM</span>
+          <span className="text-white text-xl md:text-2xl font-bold">October 6th, 2024</span>
+          <span className="text-white text-xl md:text-2xl font-bold">1 PM - 4 PM</span>
           <span className="text-white text-base opacity-80 mt-2">Calendar</span>
         </motion.div>
-        {/* Center title */}
-        <motion.div
-          className="flex flex-col items-center justify-center h-full"
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.7, ease: 'easeOut', delay: 0.3 }}
-          viewport={{ once: true }}
-        >
-          <h1 className="text-white text-5xl md:text-7xl font-extrabold text-center drop-shadow-xl leading-tight">Everything Reimagined</h1>
-        </motion.div>
+
         {/* Right info */}
         <motion.div
-          className="flex flex-col items-end justify-center h-full"
+          className="absolute bottom-[25%] right-[5%] md:right-[10%] flex flex-col items-end"
           initial={{ opacity: 0, x: 40 }}
           whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7, ease: 'easeOut', delay: 0.2 }}
+          transition={{ duration: 0.7, ease: 'easeOut', delay: 2.2 }}
           viewport={{ once: true }}
         >
-          <span className="text-white text-2xl md:text-3xl font-bold mb-1 text-right">Hagey Hall Humanity Theatre</span>
-          <span className="text-white text-lg md:text-xl text-right">200 University Street West, Waterloo, Postal</span>
+          <span className="text-white text-xl md:text-2xl font-bold text-right">
+            Hagey Hall Humanity Theatre
+          </span>
+          <span className="text-white text-md md:text-lg text-right">
+            200 University Street West, Waterloo, Postal
+          </span>
           <span className="text-white text-base opacity-80 mt-2">Google Maps</span>
         </motion.div>
       </div>
