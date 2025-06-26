@@ -25,25 +25,25 @@ const TimeUnit = ({ value, label }: { value: string; label: string }) => {
 
   return (
     <motion.div
-      className="flex flex-col items-center"
+      className="flex flex-col items-center py-5"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
       <div className="relative">
         <motion.div
-          className="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-extrabold font-Inter px-3 sm:px-5 md:px-8 py-3 lg:py-4 rounded-lg text-white relative"
+          className="text-[clamp(1.75rem,5.5vw,7rem)] font-extrabold font-Inter px-3 md:px-5 lg:px-7 py-2 rounded-lg text-[#d9d4c1] relative"
           initial={{ scale: 1 }}
           animate={{ scale: [1, 1.02, 1] }}
           transition={{ duration: 0.5 }}
         >
-          <div className="flex space-x-0.5 md:space-x-1 xl:space-x-2">
+          <div className="flex">
             {digits.map((digit, index) => {
               const isChanging = isAnimating && digit !== prevDigits[index];
               return (
                 <span
                   key={`${index}-${digit}`}
-                  className="inline-block relative h-[1em] w-[0.6em] overflow-hidden align-middle"
+                  className="inline-block relative h-[1.2em] w-[0.75em] overflow-hidden align-middle"
                 >
                   <AnimatePresence mode="wait">
                     <motion.span
@@ -85,7 +85,7 @@ const TimeUnit = ({ value, label }: { value: string; label: string }) => {
         </motion.div>
       </div>
       <motion.span
-        className="mt-2 md:mt-3 text-[0.7rem] sm:text-sm md:text-lg uppercase tracking-widest text-white"
+        className="mt-2 md:mt-3 text-[clamp(0.75rem,1.5vw,2rem)] uppercase tracking-widest text-[#d9d4c1]"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.2 }}
@@ -114,14 +114,14 @@ const renderer = ({
   } else {
     return (
       <motion.div
-        className="flex gap-2 md:gap-5 lg:gap-8 justify-center items-center text-white mt-8 mb-12"
+        className="flex gap-[2vw] justify-center items-center text-white mt-8 mb-3 sm:mb-5 md:mb-8 lg:mb-10"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
       >
         <TimeUnit value={String(days).padStart(2, "0")} label="days" />
         <motion.span
-          className="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-extrabold font-Inter text-white -translate-y-1/3"
+          className="text-[clamp(2rem,6vw,7rem)] font-extrabold font-Inter text-[#d9d4c1] -translate-y-[12%]"
           animate={{ opacity: [0.5, 1, 0.5] }}
           transition={{ duration: 1, repeat: Infinity }}
         >
@@ -129,7 +129,7 @@ const renderer = ({
         </motion.span>
         <TimeUnit value={String(hours).padStart(2, "0")} label="hours" />
         <motion.span
-          className="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-extrabold font-Inter text-white -translate-y-1/3"
+          className="text-[clamp(2rem,6vw,7rem)] font-extrabold font-Inter text-[#d9d4c1] -translate-y-[12%]"
           animate={{ opacity: [0.5, 1, 0.5] }}
           transition={{ duration: 1, repeat: Infinity }}
         >
@@ -137,7 +137,7 @@ const renderer = ({
         </motion.span>
         <TimeUnit value={String(minutes).padStart(2, "0")} label="minutes" />
         <motion.span
-          className="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-extrabold font-Inter text-white -translate-y-1/3"
+          className="text-[clamp(2rem,6vw,7rem)] font-extrabold font-Inter text-[#d9d4c1] -translate-y-[12%]"
           animate={{ opacity: [0.5, 1, 0.5] }}
           transition={{ duration: 1, repeat: Infinity }}
         >
@@ -158,46 +158,96 @@ export default function BuyTicketPage() {
 
   return (
     <div
-      className="min-h-screen flex flex-col items-center bg-black bg-opacity-80 px-4 mt-32"
+      className="relative h-full w-full overflow-hidden bg-black text-white mt-[5%]"
       style={{ fontFamily: "var(--font-sans)" }}
     >
-      <motion.h2
-        className="text-4xl md:text-5xl font-normal font-Inter text-white mb-12 mt-12 text-center"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        Ticket Sales Open In
-      </motion.h2>
-      {isMounted ? (
-        <Countdown date={new Date("2025-09-01T00:00:00")} renderer={renderer} />
-      ) : (
-        <div className="flex gap-10 justify-center items-center text-white mt-8 mb-12">
-          <TimeUnit value="00" label="days" />
-          <span className="text-8xl font-extrabold font-Inter text-white">
-            :
-          </span>
-          <TimeUnit value="00" label="hours" />
-          <span className="text-8xl font-extrabold font-Inter text-white">
-            :
-          </span>
-          <TimeUnit value="00" label="minutes" />
-          <span className="text-8xl font-extrabold font-Inter text-white">
-            :
-          </span>
-          <TimeUnit value="00" label="seconds" />
+      <div className="relative z-10 grid grid-cols-12 h-full">
+        {/* left side */}
+        <motion.div
+          className="col-span-12 md:col-span-3 flex flex-col justify-between border-r border-white/15 bg-black overflow-hidden relative"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          {/* red gradient glow */}
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-[#E50609]/70 via-[#770505]/30 to-transparent" />
+          {/* glow ring – 25 % of sidebar width */}
+          <div className="absolute left-0 top-1/2 -translate-x-[65%] -translate-y-1/2 hidden md:block z-10 w-[75%] aspect-square">
+            <div className="w-full h-full rounded-full bg-[#cb2b2a]" />
+          </div>
+
+          <div className="absolute left-0 top-1/2 -translate-x-[65%] -translate-y-1/2 hidden md:block z-0 w-[175%] aspect-square">
+            <div className="w-full h-full rounded-full bg-black" />
+          </div>
+
+          <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2">
+            <p className="rotate-180 origin-left text-sm lg:text-lg font-light tracking-widest text-white/50 [writing-mode:vertical-rl]">
+              INDEPENDENTLY ORGANISED TEDx EVENT
+            </p>
+          </div>
+        </motion.div>
+
+        {/* right side */}
+        <div className="col-span-12 md:col-span-9 flex flex-col items-center justify-center text-center overflow-hidden">
+          <motion.h2
+            className="text-[clamp(1.6rem,4.75vw,5rem)] font-Inter text-[#d9d4c1] font-extrabold mt-16 lg:mt-10 text-center"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            TICKET SALES OPEN IN
+          </motion.h2>
+          {isMounted ? (
+            <Countdown
+              date={new Date("2025-09-01T00:00:00")}
+              renderer={renderer}
+            />
+          ) : (
+            <div className="flex gap-10 justify-center items-center text-[#d9d4c1] mt-8 mb-12">
+              <TimeUnit value="00" label="days" />
+              <span className="text-8xl font-extrabold font-Inter text-[#d9d4c1]">
+                :
+              </span>
+              <TimeUnit value="00" label="hours" />
+              <span className="text-8xl font-extrabold font-Inter text-[#d9d4c1]">
+                :
+              </span>
+              <TimeUnit value="00" label="minutes" />
+              <span className="text-8xl font-extrabold font-Inter text-[#d9d4c1]">
+                :
+              </span>
+              <TimeUnit value="00" label="seconds" />
+            </div>
+          )}
+          <motion.h2
+            className="text-[clamp(1.5rem,3.5vw,4rem)] font-Inter text-[#E50609] font-bold text-center pt-3 px-3"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            EVERYTHING REIMAGINED
+          </motion.h2>
+          <motion.h2
+            className="text-[clamp(2rem,3vw,4.5rem)] font-Inter text-[#595654] text-center font-light pb-3"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            OCTOBER 26, 2025
+          </motion.h2>
+          <motion.div
+            className="text-center text-[#d9d4c1] text-[clamp(0.8rem,1.1vw,2.5rem)] w-[75%] py-5"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
+            Please note that payments are <b>non-refundable</b>. Spots are
+            limited!
+            <br />
+            Please act swiftly if you wish to be part of this experience.
+          </motion.div>
         </div>
-      )}
-      <motion.div
-        className="mt-16 text-center text-white text-base md:text-xl max-w-2xl"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.3 }}
-      >
-        Please note that payments are <b>non-refundable</b>. Spots are limited!
-        <br />
-        Please act swiftly if you wish to be part of this experience.
-      </motion.div>
+      </div>
     </div>
   );
 }
