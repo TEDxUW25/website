@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 'use client'
 import React, { useState, useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
+import { motion, Easing } from 'framer-motion';
 
 type MouseTrailPoint = {
     id: number;
@@ -26,7 +26,7 @@ const fadeUpVariants = {
     y: 0,
     transition: {
       duration: 0.8,
-      ease: [0.16, 1, 0.3, 1],
+      ease: [0.16, 1, 0.3, 1] as Easing,
       delay
     }
   })
