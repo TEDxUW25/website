@@ -1,7 +1,7 @@
 'use client'
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 
 interface Nav {
   name: string,
@@ -52,7 +52,7 @@ export default function NavBar() {
   };
 
   // Animation variants
-  const navbarVariants = {
+  const navbarVariants: Variants = {
     hidden: { y: -100, opacity: 0 },
     visible: { 
       y: 0, 

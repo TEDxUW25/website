@@ -40,12 +40,14 @@ export default function HeroSection() {
       });
     }, options);
 
-    sectionRefs.current.forEach(ref => {
+    // Copy refs to a variable to avoid the warning
+    const currentRefs = sectionRefs.current.slice();
+    currentRefs.forEach(ref => {
       if (ref) observer.observe(ref);
     });
 
     return () => {
-      sectionRefs.current.forEach(ref => {
+      currentRefs.forEach(ref => {
         if (ref) observer.unobserve(ref);
       });
     };
