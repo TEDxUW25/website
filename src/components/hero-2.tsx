@@ -40,11 +40,8 @@ export default function HeroSection() {
       });
     }, options);
 
-    // Copy refs to a variable to avoid the warning
+    // Only declare currentRefs ONCE
     const currentRefs = sectionRefs.current.slice();
-    currentRefs.forEach(ref => {
-      if (ref) observer.observe(ref);
-    });
 
     return () => {
       currentRefs.forEach(ref => {
