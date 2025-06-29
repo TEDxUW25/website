@@ -40,14 +40,13 @@ export default function HeroSection() {
       });
     }, options);
 
-    // Only declare currentRefs ONCE
-    const currentRefs = sectionRefs.current.slice();
-
-    return () => {
-      currentRefs.forEach(ref => {
-        if (ref) observer.unobserve(ref);
-      });
-    };
+    // Observe all section refs
+    sectionRefs.current.forEach(ref => {
+      if (ref) {
+        observer.observe(ref);
+        return () => observer.unobserve(ref);
+      }
+    });
   }, []);
 
   // Intersection observer for last section
