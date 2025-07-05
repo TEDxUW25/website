@@ -126,7 +126,7 @@ const WhatIsTed = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.8 }}
         >
-          Founded in 2011, TEDxUW is the University of Waterloo's official TEDx experience. We aim to put the extended UW community onto a new type of global activity map that is being watched, shared, and talked about by the world's top thought leaders.
+          Founded in 2011, TEDxUW is the University of Waterloo&apos;s official TEDx experience. We aim to put the extended UW community onto a new type of global activity map that is being watched, shared, and talked about by the world&apos;s top thought leaders.
         </motion.p>
         
         {/* Enhanced presenter image positioning */}

@@ -7,10 +7,11 @@ import React, { useState, useEffect, useRef } from "react"
 // Array of 5 dummy card images (typed)
 const cardImages: string[] = [
   "/sponsorHeroCards/image 1.png",
-  "/sponsorHeroCards/image 2.png",
-  "/sponsorHeroCards/image 3.png",
-  "/sponsorHeroCards/image 4.png",
-  "/sponsorHeroCards/image 5.png"
+  "/sponsorHeroCards/1.jpg",
+  "/sponsorHeroCards/3.jpg",
+  "/sponsorHeroCards/4.jpg",
+  "/sponsorHeroCards/2.jpg",
+
 ]
 
 export default function SponsorshipCard() {

@@ -1,20 +1,21 @@
 'use client'
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Home, ArrowLeft, Search } from 'lucide-react';
+import { Home, ArrowLeft } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 const NotFoundPage = () => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  // const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
    const router = useRouter();
 
   useEffect(() => {
-    const handleMouseMove = (e) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
+    // const handleMouseMove = (e) => {
+    //   setMousePosition({ x: e.clientX, y: e.clientY });
+    // };
 
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+    // window.addEventListener('mousemove', handleMouseMove);
+    // return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
   const floatingElements = Array.from({ length: 10 }, (_, i) => ({
@@ -109,7 +110,7 @@ const NotFoundPage = () => {
             Page Not Found
           </h2>
           <p className="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
-            The page you're looking for doesn't exist or has been moved.
+            The page you&apos;re looking for doesn&apos;t exist or has been moved.
           </p>
         </motion.div>
 
@@ -120,7 +121,7 @@ const NotFoundPage = () => {
           transition={{ delay: 0.5, duration: 0.8 }}
           className="flex flex-col sm:flex-row gap-4 justify-center items-center"
         >
-          <a href="/" className="">
+          <Link href="/" className="">
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -129,7 +130,7 @@ const NotFoundPage = () => {
             <Home className="w-5 h-5" />
             Go Home
           </motion.button>
-          </a>
+          </Link>
 
           <motion.button
            onClick={() => router.back()}
@@ -150,7 +151,7 @@ const NotFoundPage = () => {
           className="mt-12"
         >
           <p className="text-gray-500 text-sm">
-            Let's get you back on track.
+            Let&apos;s get you back on track.
           </p>
         </motion.div>
       </div>
