@@ -5,7 +5,7 @@ import LandingPage from "@/components/landingPage";
 import PastTalks from "@/components/pastTalks";
 import Theme from "@/components/theme";
 import WhatIsTed from "@/components/whatIsTed";
-import ImpactPage from "./impact/page";
+import ImpactPage from "@/components/impact";
 
 export default function Home() {
   return (
