@@ -167,7 +167,7 @@ export default function NavBar() {
 
       {/* Desktop View Nav */}
       <motion.div 
-        className={`hidden md:flex flex-row justify-between p-4 fixed top-0 z-30 w-full transition-all duration-200 ${scrolled ? 'bg-black/30 backdrop-blur' : 'bg-black shadow-sm'}`}
+        className={`hidden md:flex flex-row justify-between px-8 py-6 fixed top-0 z-30 w-full transition-all duration-200 ${scrolled ? 'bg-black/30 backdrop-blur' : 'bg-black shadow-sm'}`}
         initial="hidden"
         animate={mounted ? "visible" : "hidden"}
         variants={navbarVariants}

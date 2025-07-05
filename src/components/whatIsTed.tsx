@@ -130,7 +130,7 @@ const WhatIsTed = () => {
         </motion.p>
         
         {/* Enhanced presenter image positioning */}
-        <div className="hidden lg:block absolute right-[-100px] xl:right-[-140px] top-0 z-20 h-[220px] w-[180px]">
+        {/* <div className="hidden lg:block absolute right-[-100px] xl:right-[-140px] top-0 z-20 h-[220px] w-[180px]">
           <motion.div
             className="w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl shadow-2xl border border-gray-700 flex items-center justify-center"
             initial={{ opacity: 0, scale: 0.8 }}
@@ -146,7 +146,7 @@ const WhatIsTed = () => {
               <p className="text-gray-400 text-xs">Speaker</p>
             </div>
           </motion.div>
-        </div>
+        </div> */}
         
         {/* Mobile presenter image */}
         <motion.div 
