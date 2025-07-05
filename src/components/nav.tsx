@@ -182,8 +182,8 @@ export default function NavBar() {
         </div>
         <div className="flex flex-row gap-8">
           <Link href="/buy_ticket">
-            <button className={`rounded-lg border-2 px-4 py-2 hover:bg-[var(--button-transition)] hover:border-[var(--button-transition)] transition ease-in-out border-white text-white`}>
-              Buy Ticket
+            <button className={`rounded-lg border-2 px-4 py-2 bg-[var(--button-transition)] border-[var(--button-transition)] hover:border-white hover:bg-white/0 transition ease-in-out border-white text-white`}>
+              Buy Tickets
             </button>
           </Link> 
           <Link href="/log_in">

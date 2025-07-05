@@ -46,7 +46,7 @@ const PastTalkCard: React.FC<PastTalkCardProps> = ({ title, desc, youtube }) => 
       <div className="absolute inset-0 bg-black bg-opacity-70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center p-6">
         <div className="text-lg font-bold text-white text-center mb-1 w-full">{truncatedTitle}</div>
         <div className="text-sm text-gray-200 text-center mb-2">{desc}</div>
-        <div className="mt-2 text-base text-red-300">Watch on YouTube →</div>
+        <div className="mt-2 text-base text-red-500">Watch on YouTube →</div>
       </div>
     </a>
   );

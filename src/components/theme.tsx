@@ -3,6 +3,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import { MdOutlineArrowOutward } from "react-icons/md";
 
 const sentence = {
   hidden: { opacity: 1 },
@@ -121,8 +122,11 @@ const Theme: React.FC = () => (
         >
           <span className="text-white text-md sm:text-xl md:text-2xl font-bold">October 6th, 2024</span>
           <span className="text-white text-md sm:text-xl md:text-2xl font-bold">1 PM - 4 PM</span>
-          <a href="" className="hover:text-underline">
-            <span className="text-white text-xs sm:text-base opacity-80 mt-2">Calendar</span>
+          <a target="_blank" href="https://calendar.google.com/calendar/event?action=TEMPLATE&amp;tmeid=M2dsazZvMm5rbWZ0cW41Z29tZml0cTE3NTMgdHJpbmhtaW5odGhhbzIxMTkzQG0&amp;tmsrc=trinhminhthao21193%40gmail.com"
+          className="hover:underline transition ease-in-out">
+            <span className="flex flex-cols text-white text-xs sm:text-base opacity-80 mt-2">Calendar 
+              <MdOutlineArrowOutward className='mt-1'/>
+            </span>
           </a>
         </motion.div>
 
@@ -138,9 +142,13 @@ const Theme: React.FC = () => (
             Hagey Hall Humanity Theatre
           </span>
           <span className="text-white text-xs sm:text-md md:text-lg text-right">
-            200 University Street West, Waterloo, Postal
+            200 University Street West, Waterloo, ON N2L 3G1
           </span>
-          <span className="text-white text-xs sm:text-base opacity-80 mt-2">Google Maps</span>
+          <a href="https://g.co/kgs/9fgTqHw" target="_blank" className="hover:underline transition ease-in-out">
+            <span className="flex flex-cols text-white text-xs sm:text-base opacity-80 mt-2">Google Maps 
+              <MdOutlineArrowOutward className='mt-1'/>
+            </span>
+          </a>
         </motion.div>
       </div>
     </div>
