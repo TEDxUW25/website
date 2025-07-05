@@ -6,6 +6,7 @@ interface CounterProps {
   prefix?: string;
   suffix?: string;
   duration?: number;
+  trigger: boolean;
 }
 
 const Counter: React.FC<CounterProps> = ({
@@ -13,10 +14,13 @@ const Counter: React.FC<CounterProps> = ({
   prefix = "",
   suffix = "",
   duration = 2000,
+  trigger,
 }) => {
   const [count, setCount] = useState<number>(0);
 
   useEffect(() => {
+    if (!trigger) return;
+
     let current = 0;
     const step = target / (duration / 16);
     const interval = setInterval(() => {
@@ -29,7 +33,7 @@ const Counter: React.FC<CounterProps> = ({
       }
     }, 16);
     return () => clearInterval(interval);
-  }, [target, duration]);
+  }, [target, duration, trigger]);
 
   return (
     <div className="text-5xl font-bold text-white">

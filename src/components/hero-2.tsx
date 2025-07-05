@@ -1,36 +1,24 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
+import { AnimatePresence, motion } from "framer-motion";
 
-interface Section {
-  title: string;
-  footnote: string;
-}
+interface Section { title: string }
 
 export default function HeroSection() {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const lastSectionRef = useRef<HTMLDivElement | null>(null);
 
   const [activeSection, setActiveSection] = useState<number>(0);
+  const [lastSectionInView, setLastSectionInView] = useState(true);
   const containerRef = useRef<HTMLDivElement | null>(null);
 
   // Text content for each section
   const sections: Section[] = [
-    {
-      title: "Step into a world of ideas worth spreading at TEDxUW 2025.",
-      footnote: "1"
-    },
-    {
-      title: "Discover voices that challenge convention and ignite curiosity.",
-      footnote: "2"
-    },
-    {
-      title: "Experience talks that connect passion, purpose, and possibility.",
-      footnote: "3"
-    },
-    {
-      title: "Join the movement. Inspire change. Be part of something bigger.",
-      footnote: "4"
-    }
+    { title: "Step into a world of ideas worth spreading at TEDxUW 2025." },
+    { title: "Discover voices that challenge convention and ignite curiosity." },
+    { title: "Experience talks that connect passion, purpose, and possibility." },
+    { title: "Join the movement. Inspire change. Be part of something bigger." }
   ];
 
   // Intersection observer for active section
@@ -52,15 +40,24 @@ export default function HeroSection() {
       });
     }, options);
 
+    // Observe all section refs
     sectionRefs.current.forEach(ref => {
-      if (ref) observer.observe(ref);
+      if (ref) {
+        observer.observe(ref);
+        return () => observer.unobserve(ref);
+      }
     });
+  }, []);
 
-    return () => {
-      sectionRefs.current.forEach(ref => {
-        if (ref) observer.unobserve(ref);
-      });
-    };
+  // Intersection observer for last section
+  useEffect(() => {
+    if (!lastSectionRef.current) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setLastSectionInView(entry.isIntersecting),
+      { threshold: 0.5 }
+    );
+    observer.observe(lastSectionRef.current);
+    return () => observer.disconnect();
   }, []);
 
   const handleScroll = (index: number) => {
@@ -74,7 +71,10 @@ export default function HeroSection() {
   };
 
   return (
-    <div className="relative w-full bg-black text-white overflow-hidden">
+    <div
+      id="hero-section"
+      className="relative w-full bg-black text-white overflow-hidden"
+    >
       {/* Video background */}
       <video
         ref={videoRef}
@@ -83,26 +83,38 @@ export default function HeroSection() {
         loop
         playsInline
         className="absolute top-0 left-0 w-full h-full object-cover opacity-60"
+        style={{ pointerEvents: "auto" }}
       >
         <source src="promo_vid.mov" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
 
-      {/* Navigation dots */}
-      <div className="absolute right-8 top-1/2 transform -translate-y-1/2 z-20">
-        <div className="flex flex-col gap-4">
-          {sections.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => handleScroll(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                activeSection === index ? 'bg-white scale-125' : 'bg-gray-500'
-              }`}
-              aria-label={`Go to section ${index + 1}`}
-            />
-          ))}
-        </div>
-      </div>
+      {/* Navigation dots with fade animation */}
+      <AnimatePresence>
+        {(lastSectionInView || activeSection != sections.length - 1) && (
+          <motion.div
+            key="nav-dots"
+            initial={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.3 }}
+            className="fixed right-2.5 md:right-8 top-1/2 transform -translate-y-1/2 z-20"
+          >
+            <div className="flex flex-col gap-3 md:gap-4">
+              {sections.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => handleScroll(index)}
+                  className={`w-1.5 h-1.5 md:w-3 md:h-3 rounded-full transition-all duration-300 ${
+                    activeSection === index ? 'bg-white scale-125' : 'bg-gray-500'
+                  }`}
+                  aria-label={`Go to section ${index + 1}`}
+                />
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Main content */}
       <div
@@ -112,14 +124,14 @@ export default function HeroSection() {
         {sections.map((section, index) => (
           <div
             key={index}
-            ref={(el) => {
+            ref={el => {
               sectionRefs.current[index] = el;
+              if (index === sections.length - 1) lastSectionRef.current = el;
             }}
-            
             className="min-h-screen flex items-center justify-center snap-start scroll-mt-0"
           >
-            <div className="max-w-4xl px-6 py-24 text-center">
-              <h2 className="text-5xl md:text-6xl font-bold leading-tight">
+            <div className="max-w-7xl px-6 py-24 text-center">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold leading-tight">
                 <span className={activeSection === index ? 'text-white' : 'text-gray-600'}>
                   {section.title.split(' ').map((word, wordIndex) => (
                     <span
@@ -134,7 +146,6 @@ export default function HeroSection() {
                       {word}{" "}
                     </span>
                   ))}
-                  <sup>{section.footnote}</sup>
                 </span>
               </h2>
             </div>

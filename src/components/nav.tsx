@@ -1,7 +1,7 @@
 'use client'
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 
 interface Nav {
   name: string,
@@ -52,7 +52,7 @@ export default function NavBar() {
   };
 
   // Animation variants
-  const navbarVariants = {
+  const navbarVariants: Variants = {
     hidden: { y: -100, opacity: 0 },
     visible: { 
       y: 0, 
@@ -138,7 +138,7 @@ export default function NavBar() {
                 key={item.name} 
                 href={item.path}
                 onClick={toggleMenu}
-                className="py-4 text-gray-800 border-b border-gray-200 font-medium uppercase"
+                className="py-4 text-white border-b border-gray-200 font-medium uppercase"
               >
                 {item.name}
               </Link>
@@ -182,7 +182,7 @@ export default function NavBar() {
         </div>
         <div className="flex flex-row gap-8">
           <Link href="/buy_ticket">
-            <button className={`border rounded-lg border-2 px-4 py-2 hover:bg-[var(--button-transition)] hover:border-[var(--button-transition)] transition ease-in-out border-white text-white`}>
+            <button className={`rounded-lg border-2 px-4 py-2 hover:bg-[var(--button-transition)] hover:border-[var(--button-transition)] transition ease-in-out border-white text-white`}>
               Buy Ticket
             </button>
           </Link> 

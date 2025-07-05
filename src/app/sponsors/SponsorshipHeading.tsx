@@ -27,12 +27,19 @@ const SponsorshipHeading = ({ cardVisible }: { cardVisible: boolean }) => {
         {/* Title 1: "BECOME OUR SPONSOR" */}
         <motion.h1
           style={{ opacity: becomeOpacity, x: becomeX }}
-          className="absolute inset-0 font-inter text-white uppercase tracking-[0.1em] 
-                     text-[7vw] 
-                     leading-tight text-center"
+          className="
+            absolute 
+            inset-x-0 
+            top-[-1] 
+            md:top-5  
+            bg-black/30  
+            backdrop-blur 
+            text-center   
+          "
         >
+          <span className="font-inter text-white uppercase tracking-[0.1em] text-[7vw] leading-tight">
           BECOME OUR SPONSOR
-
+          </span>
         </motion.h1>
 
         {/* Title 2: "OUR SPONSORS" */}
