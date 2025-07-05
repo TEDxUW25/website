@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React from "react";
 import { Speaker, SPEAKERS } from "@/data/speakers";
 import Article from "@/app/speakers/article";
 import { motion } from "framer-motion";
@@ -15,20 +15,20 @@ const FeaturedSpeakerCard: React.FC<FeaturedSpeakerCardProps> = ({
   const handleClick = () => {
     window.open('https://www.google.com', '_blank');
   };
-  
+
   const [ref, inView] = useInView({
     triggerOnce: true,
-    threshold: 0.1,
+    threshold: 0.1
   });
 
   return (
     <motion.div 
       ref={ref}
+      className="flex flex-col"
       initial={{ opacity: 0, y: 20 }}
       animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className="flex flex-col">
-      {/* Image card with hover zoom and glow effect */}
+      transition={{ duration: 0.6, ease: "easeOut" }}>
+      {/* Image card with hover zoom effect */}
       <motion.div 
         className="w-full aspect-[3/4] rounded-none overflow-hidden shadow-xl group cursor-pointer relative" 
         onClick={handleClick}
@@ -61,8 +61,6 @@ const FeaturedSpeakerCard: React.FC<FeaturedSpeakerCardProps> = ({
         )}
         <motion.div 
           className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-          initial={{ opacity: 0 }}
-          whileHover={{ opacity: 1 }}
         />
       </motion.div>
       {/* Text below card */}
@@ -90,8 +88,8 @@ const FeaturedSpeakerCard: React.FC<FeaturedSpeakerCardProps> = ({
               (speaker.bio.length > 100 ? "..." : "")
             : "An inspiring voice sharing groundbreaking ideas."}
         </motion.p>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 
@@ -106,7 +104,7 @@ const RegularSpeakerCard: React.FC<RegularSpeakerCardProps> = ({ speaker }) => {
   
   const [ref, inView] = useInView({
     triggerOnce: true,
-    threshold: 0.1,
+    threshold: 0.1
   });
   
   return (
@@ -124,7 +122,8 @@ const RegularSpeakerCard: React.FC<RegularSpeakerCardProps> = ({ speaker }) => {
         className="w-1/2 bg-red-600 flex flex-col justify-between p-5 z-10"
         initial={{ x: 0 }}
         whileHover={{ x: -8 }}
-        transition={{ type: "spring", stiffness: 300, damping: 20 }}>
+        transition={{ type: "spring", stiffness: 300, damping: 20 }}
+      >
         {/* Top: Person Name */}
         <div>
           <h3 className="text-xl sm:text-2xl font-bold text-white uppercase">
@@ -169,17 +168,17 @@ const RegularSpeakerCard: React.FC<RegularSpeakerCardProps> = ({ speaker }) => {
             transition={{ duration: 0.3 }}
           >
             click to open bio <motion.span 
-                                  className="ml-1"
-                                  animate={{ x: [0, 5, 0] }}
-                                  transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-                                >→</motion.span>
+                               className="ml-1"
+                               animate={{ x: [0, 5, 0] }}
+                               transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                             >→</motion.span>
           </motion.p>
         </div>
       </motion.div>
 
-      {/* White right side with speaker image */}
+      {/* Right side - gray image with optimized loading */}
       <motion.div 
-        className="w-1/2 h-full overflow-hidden relative shadow-inner"
+        className="absolute top-0 right-0 bottom-0 w-1/2 bg-zinc-300 overflow-hidden transition-all duration-300 ease-in-out group-hover:w-[51%]"
         whileHover={{ scale: 1.05 }}
         transition={{ duration: 0.4 }}
       >
@@ -226,10 +225,22 @@ const RegularSpeakerCard: React.FC<RegularSpeakerCardProps> = ({ speaker }) => {
 };
 
 export default function Speakers() {
-  const [headerRef, headerInView] = useInView({
+  // Create refs for animation triggers
+  const [featuredRef, featuredInView] = useInView({
     triggerOnce: true,
-    threshold: 0.1,
+    threshold: 0.1
   });
+  
+  const [regularRef, regularInView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1
+  });
+  
+  const [titleRef, titleInView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1
+  });
+  
   let topSpeakers = SPEAKERS.filter((s) => s.featured).slice(0, 3);
 
   if (topSpeakers.length < 3) {
@@ -280,83 +291,98 @@ export default function Speakers() {
   return (
     <div className="min-h-screen bg-white text-black font-[family-name:var(--font-geist-sans)]">
       <motion.section 
-        ref={headerRef}
-        initial={{ opacity: 0 }}
-        animate={headerInView ? { opacity: 1 } : { opacity: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className="bg-black text-white pt-10 pb-8 md:pt-12 md:pb-12 lg:pb-16 overflow-visible relative mt-20">
+        className="bg-black text-white pt-10 pb-8 md:pt-12 md:pb-12 lg:pb-16 overflow-visible relative mt-20"
+        ref={titleRef}
+      >
         <div className="container mx-auto max-w-6xl xl:max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
-            <div className="text-left">
+            <motion.div 
+              className="text-left"
+              initial={{ opacity: 0, x: -30 }}
+              animate={titleInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
+              transition={{ duration: 0.7 }}
+            >
               <motion.h1 
                 className="text-4xl sm:text-5xl md:text-6xl lg:text-[80px] font-extrabold uppercase tracking-tighter leading-none"
-                initial={{ x: -50, opacity: 0 }}
-                animate={headerInView ? { x: 0, opacity: 1 } : { x: -50, opacity: 0 }}
-                transition={{ duration: 0.7, delay: 0.2 }}
+                initial={{ y: 20, opacity: 0 }}
+                animate={titleInView ? { y: 0, opacity: 1 } : { y: 20, opacity: 0 }}
+                transition={{ delay: 0.2, duration: 0.5 }}
               >
                 Our Speakers
               </motion.h1>
               <motion.h2 
                 className="text-4xl sm:text-5xl md:text-6xl lg:text-[80px] font-extrabold uppercase tracking-tighter -mt-2 sm:-mt-3 md:-mt-4 lg:-mt-6 leading-none"
-                initial={{ x: -50, opacity: 0 }}
-                animate={headerInView ? { x: 0, opacity: 1 } : { x: -50, opacity: 0 }}
-                transition={{ duration: 0.7, delay: 0.4 }}
+                initial={{ y: 20, opacity: 0 }}
+                animate={titleInView ? { y: 0, opacity: 1 } : { y: 20, opacity: 0 }}
+                transition={{ delay: 0.3, duration: 0.5 }}
               >
                 Line Up
               </motion.h2>
-            </div>
+            </motion.div>
 
-            <div className="text-right hidden md:block">
+            <motion.div 
+              className="text-right hidden md:block"
+              initial={{ opacity: 0, x: 30 }}
+              animate={titleInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
+              transition={{ delay: 0.4, duration: 0.7 }}
+            >
               <div className="flex flex-col items-end">
-                <motion.p 
-                  className="text-sm mb-2 text-zinc-300 max-w-xs text-right"
-                  initial={{ y: 20, opacity: 0 }}
-                  animate={headerInView ? { y: 0, opacity: 1 } : { y: 20, opacity: 0 }}
-                  transition={{ duration: 0.7, delay: 0.5 }}
-                >
+                <p className="text-sm mb-2 text-zinc-300 max-w-xs text-right">
                   Our incredibly talented, knowledgeable rosters of speakers who
                   in love with innovating and spreads ideas worth spreading
-                </motion.p>
+                </p>
                 <div className="relative">
                   <motion.h3 
                     className="text-4xl md:text-6xl lg:text-8xl italic tracking-wide text-white relative mb-[-2.5rem] md:mb-[-5rem] lg:mb-[-7rem] z-10 transform translate-y-0 md:translate-y-0 lg:translate-y-2"
-                    initial={{ y: 40, opacity: 0 }}
-                    animate={headerInView ? { y: 0, opacity: 1 } : { y: 40, opacity: 0 }}
-                    transition={{ duration: 1, delay: 0.7, ease: "easeOut" }}
+                    animate={{ y: [0, -5, 0] }}
+                    transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
                   >
                     speakers
                   </motion.h3>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       <section className="pt-12 pb-8 md:pt-16 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="container mx-auto max-w-6xl xl:max-w-7xl mt-8 md:mt-10 lg:mt-12">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-16">
-            {topSpeakers.map((speaker, index) => (
-              <div
-                key={
-                  speaker.id
-                    ? `featured-${speaker.id}`
-                    : `featured-placeholder-${index}`
-                }
-                className="flex flex-col"
-              >
-                <h4 className="text-black font-bold text-xl mb-2 uppercase text-center">
-                  PERSON NAME
-                </h4>
-                <FeaturedSpeakerCard speaker={speaker} />
-              </div>
-            ))}
-          </div>
+          <motion.div 
+            ref={featuredRef}
+            initial={{ opacity: 0, y: 30 }}
+            animate={featuredInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+          >
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-16">
+              {topSpeakers.map((speaker, index) => (
+                <div
+                  key={
+                    speaker.id
+                      ? `featured-${speaker.id}`
+                      : `featured-placeholder-${index}`
+                  }
+                  className="flex flex-col"
+                >
+                  <h4 className="text-black font-bold text-xl mb-2 uppercase text-center">
+                    PERSON NAME
+                  </h4>
+                  <FeaturedSpeakerCard speaker={speaker} />
+                </div>
+              ))}
+            </div>
+          </motion.div>
         </div>
       </section>
 
       <section className="py-12 md:py-16 px-4 sm:px-6 lg:px-8 bg-black">
-        <div className="container mx-auto max-w-6xl xl:max-w-7xl">
+        <motion.div 
+          className="container mx-auto max-w-6xl xl:max-w-7xl"
+          ref={regularRef}
+          initial={{ opacity: 0, y: 40 }}
+          animate={regularInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
           {/* Force display exactly 6 speakers in 2 rows with 3 per row */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-10 mb-8">
             {/* First row - 3 speakers */}
@@ -381,7 +407,7 @@ export default function Speakers() {
               </div>
             ))}
           </div>
-        </div>
+        </motion.div>
       </section>
       <Article />
     </div>
