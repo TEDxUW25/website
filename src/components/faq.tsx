@@ -37,7 +37,7 @@ export default function FAQ() {
   );
   const pathname = usePathname(); // detect route changes
 
-  // Reset open states of questions every time the component mounts
+  // Reset open states of questions every time the component mounts/page reroutes
   useEffect(() => {
     setIsOpen(Array(data.length).fill(false));
   }, [pathname]);
