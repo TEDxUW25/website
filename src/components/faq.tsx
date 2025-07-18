@@ -1,6 +1,7 @@
-'use client'
-import React, { useState } from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { usePathname } from "next/navigation";
 
 const data = [
   {
@@ -34,6 +35,12 @@ export default function FAQ() {
   const [isOpen, setIsOpen] = useState<boolean[]>(
     Array(data.length).fill(false)
   );
+  const pathname = usePathname(); // detect route changes
+
+  // Reset open states of questions every time the component mounts
+  useEffect(() => {
+    setIsOpen(Array(data.length).fill(false));
+  }, [pathname]);
 
   const toggleAccordion = (index: number) => {
     setIsOpen((prev) => prev.map((open, i) => (i === index ? !open : open)));
@@ -45,12 +52,10 @@ export default function FAQ() {
         <div
           key={i}
           className="w-4/5 min-w-48 bg-white px-6 md:px-8 xl:px-10 py-3 md:py-4 mb-5 text-sm md:text-base xl:text-lg cursor-pointer"
+          onClick={() => toggleAccordion(i)}
         >
           {/* quetsion */}
-          <div
-            onClick={() => toggleAccordion(i)}
-            className="flex justify-between items-center"
-          >
+          <div className="flex justify-between items-center">
             <h1 className="font-semibold text-base md:text-lg xl:text-xl">
               {item.question}
             </h1>
