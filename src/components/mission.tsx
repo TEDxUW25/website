@@ -49,14 +49,13 @@ export default function Mission() {
               <h1 className="text-sm sm:text-lg md:text-2xl xl:text-3xl font-bold text-[#e50409] xl:py-3">
                 Our Mission
               </h1>
-              <p className="text-[10px] leading-normal sm:text-xs md:text-base xl:text-lg px-4 md:px-8 xl:px-12">
+              <p className="text-[10px] leading-normal sm:text-xs md:text-center xl:text-lg px-4 md:px-8 xl:px-12">
                 <br />
-                Dear all,
-                <br />
-                <br />
-                To unite the brightest minds within the University of Waterloo
-                community to create an environment where change-makers can share
-                their ideas and achievements with the world.
+                To convene the University of Waterloo community and amplify
+                Ideas Worth Spreading by creating inclusive platforms where
+                people from diverse backgrounds, our changemakers, hare their
+                ideas, achievements, and stories with the world, sparking
+                conversations that lead to impact
                 <br />
                 <br />
                 Sincerely,
