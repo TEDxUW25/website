@@ -4,10 +4,9 @@ import { useState, useEffect } from "react";
 import ContactForm from "@/components/contactForm";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { FaFacebookF } from 'react-icons/fa';
-import { FaInstagram } from 'react-icons/fa6';
+import { FaFacebookF } from "react-icons/fa";
+import { FaInstagram } from "react-icons/fa6";
 import { FaLinkedin } from "react-icons/fa";
-
 
 const quotes = [
   {
@@ -40,7 +39,7 @@ export default function Footer() {
   }, []);
 
   return (
-    <div className="w-full flex flex-col justify-center items-center">
+    <div className="w-full mt-40 flex flex-col justify-center items-center">
       <h1 className="font-bold text-center text-xl md:text-3xl xl:text-3xl xl:p-15 mt-10 md:mt-20">
         Frequently Asked Questions
       </h1>
@@ -67,13 +66,13 @@ export default function Footer() {
           )}
           <ContactForm />
         </div>
-        <div className="absolute top-0 right-[10%] font-bold text-black text-sm md:text-lg xl:text-2xl bg-white py-3 px-10 md:py-4 md:px-12 xl:py-5 xl:px-20">
+        <div className="absolute rounded-xl top-0 right-[10%] font-bold text-black text-sm md:text-lg xl:text-2xl bg-white py-3 px-10 md:py-4 md:px-12 xl:py-5 xl:px-20">
           Contact Us
         </div>
         {/* Buy Ticket Button with underilne animation */}
         <Link href="/buy_ticket">
           <motion.button
-            className="absolute bottom-[5%] left-[10%] font-bold text-black bg-white py-3 px-10 md:py-4 md:px-12 xl:py-5 xl:px-10 cursor-pointer outline-none"
+            className="absolute rounded-xl bottom-[5%] left-[10%] font-bold text-black bg-white py-3 px-10 md:py-4 md:px-12 xl:py-5 xl:px-10 cursor-pointer outline-none"
             whileHover="hover"
             initial="initial"
           >
@@ -100,21 +99,25 @@ export default function Footer() {
           </h1>
         </div>
         <p className="font-bold text-xs md:text-base xl:text-md mb-5 text-center">
-          <span className="text-[#e50409] font-extrabold">x</span> = independently organized
-          TED event
+          <span className="text-[#e50409] font-extrabold">x</span> =
+          independently organized TED event
         </p>
         {/* Social Media Links */}
         <div className="flex flex-row gap-7 mb-10">
           <Link href="https://www.instagram.com/tedxuw/" target="_blank">
-          <div className="bg-red-500 p-2 rounded-2xl"><FaInstagram/></div>
-            
+            <div className="bg-red-500 p-2 rounded-2xl">
+              <FaInstagram />
+            </div>
           </Link>
           <Link href="https://www.linkedin.com/company/tedxuw/" target="_blank">
-          <div className="bg-red-500 p-2 rounded-2xl">< FaLinkedin/></div>
-           
+            <div className="bg-red-500 p-2 rounded-2xl">
+              <FaLinkedin />
+            </div>
           </Link>
           <Link href="https://www.facebook.com/TEDxUW/" target="_blank">
-          <div className="bg-red-500 p-2 rounded-2xl"><FaFacebookF/></div>
+            <div className="bg-red-500 p-2 rounded-2xl">
+              <FaFacebookF />
+            </div>
           </Link>
         </div>
         {/* Copyright */}

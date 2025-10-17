@@ -5,28 +5,16 @@ import { usePathname } from "next/navigation";
 
 const data = [
   {
-    question: "FAQ question 1?",
-    ans: `FAQ ans 1. Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-        Placeat nemo illum necessitatibus recusandae ea nisi aspernatur neque quia quam ab repudiandae dolorem velit et, eius, 
-        consequuntur soluta tenetur numquam quasi?`,
+    question: "Do I need to be a UW student to attend?",
+    ans: `No, TEDxUW is open to everyone. Our talks are designed for a mature audience, so we recommend attendees be 12+. Please avoid bringing young children who might disrupt the experience. (Minors should attend with a guardian and follow venue policies.)`,
   },
   {
-    question: "FAQ question 2?",
-    ans: `FAQ ans 2. Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-        Placeat nemo illum necessitatibus recusandae ea nisi aspernatur neque quia quam ab repudiandae dolorem velit et, eius, 
-        consequuntur soluta tenetur numquam quasi? Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-        Placeat nemo illum necessitatibus recusandae ea nisi aspernatur neque quia quam ab repudiandae dolorem velit et, eius, 
-        consequuntur soluta tenetur numquam quasi?`,
+    question: "What is TEDx, and how is TEDxUW related to TED?",
+    ans: `TEDxUW is an independently organized TEDx event, produced by volunteers under license from TED. We follow TED’s format and spirit of Ideas Worth Spreading, but programming and operations are curated locally by our team—not by TED.`,
   },
   {
-    question: "FAQ question 3?",
-    ans: `FAQ ans 3. Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-        Placeat nemo illum necessitatibus recusandae ea nisi aspernatur neque quia quam ab repudiandae dolorem velit et, eius, 
-        consequuntur soluta tenetur numquam quasi? Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-        Placeat nemo illum necessitatibus recusandae ea nisi aspernatur neque quia quam ab repudiandae dolorem velit et, eius, 
-        consequuntur soluta tenetur numquam quasi? Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-        Placeat nemo illum necessitatibus recusandae ea nisi aspernatur neque quia quam ab repudiandae dolorem velit et, eius, 
-        consequuntur soluta tenetur numquam quasi?`,
+    question: "Will the talks be recorded or posted online?",
+    ans: `Yes. Talks are filmed, and selected talks may be published on the TEDx Talks YouTube channel (and occasionally featured by TED). Publication isn’t guaranteed. Audience members may appear in wide shots; if you prefer not to, ask our volunteers about camera-light seating.`,
   },
 ];
 
@@ -51,11 +39,11 @@ export default function FAQ() {
       {data.map((item, i) => (
         <div
           key={i}
-          className="w-4/5 min-w-48 bg-white px-6 md:px-8 xl:px-10 py-3 md:py-4 mb-5 text-sm md:text-base xl:text-lg cursor-pointer"
+          className="w-4/5 min-w-48 bg-white rounded-xl px-6 md:px-8 xl:px-10 py-3 md:py-4 mb-5 text-sm md:text-base xl:text-lg cursor-pointer"
           onClick={() => toggleAccordion(i)}
         >
           {/* quetsion */}
-          <div className="flex justify-between items-center">
+          <div className="flex justify-between items-center ">
             <h1 className="font-semibold text-base md:text-lg xl:text-xl">
               {item.question}
             </h1>

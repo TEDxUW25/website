@@ -65,11 +65,6 @@ export default function Year(props: YearProps) {
 
   return (
     <div className="relative text-white group">
-      <p className="hidden md:block md:text-center md:p-3 md:text-xs lg:text-sm lg:px-5 xl:px-8 xl:text-base">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat
-        obcaecati quia nihil id cumque similique deserunt minus non a ducimus
-        cupiditate expedita dicta, aliquam dolore molestiae quo sed sequi ad!
-      </p>
       <img
         className={`border-y-2 border-x-[1px] border-white w-full filter duration-300 transition-all ease-in-out ${
           isGrey ? "grayscale" : ""

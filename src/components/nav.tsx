@@ -172,11 +172,6 @@ export default function NavBar() {
                   Buy Tickets
                 </button>
               </Link>
-              <Link href="/log_in" className="block" onClick={toggleMenu}>
-                <button className="w-full bg-white text-black border border-black py-3 rounded-md font-medium">
-                  Log In
-                </button>
-              </Link>
             </div>
           </div>
           <div className="flex flex-row justify-between text-gray-500 mt-auto pt-4 w-full border-t border-gray-200">
@@ -218,13 +213,6 @@ export default function NavBar() {
               className={`rounded-lg border-2 px-4 py-2 bg-white border-white hover:bg-white/10 hover:text-white transition ease-in-out text-black`}
             >
               Buy Tickets
-            </button>
-          </Link>
-          <Link href="/log_in">
-            <button
-              className={`hover:underline underline-offset-2 transition ease-in-out pt-2 text-white`}
-            >
-              Log In
             </button>
           </Link>
         </div>
