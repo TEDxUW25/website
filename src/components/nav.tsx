@@ -17,10 +17,10 @@ const navItems: Nav[] = [
     name: "Speakers",
     path: "/speakers",
   },
-  {
-    name: "Organizers",
-    path: "/organizers",
-  },
+  // {
+  //   name: "Organizers",
+  //   path: "/organizers",
+  // },
   {
     name: "Sponsors",
     path: "/sponsors",

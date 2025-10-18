@@ -1,21 +1,23 @@
 "use client";
-import { Inter } from "next/font/google";
 import Link from "next/link";
 import ArticlePreview from "./articlePreview";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export default function Article() {
   return (
     <div className="w-full h-full p-[7%]">
       <div
-        className={`${inter.className} text-sm sm:text-xl md:text-2xl xl:text-4xl flex flex-row justify-between items-center tracking-widest`}
+        className={`text-sm sm:text-xl md:text-2xl xl:text-4xl flex flex-row justify-between items-center `}
       >
         <h1 className="font-bold">Excited ?</h1>
         <Link href="buy_ticket">
           <h1 className="hover:scale-105 duration-200">
             Purchase{" "}
-            <span className="underline underline-offset-[15%]">tickets</span>{" "}
+            <a href="/buy_ticket">
+              {" "}
+              <span className="underline underline-offset-[15%]">
+                tickets
+              </span>{" "}
+            </a>
             today!
           </h1>
         </Link>

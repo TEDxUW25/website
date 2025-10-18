@@ -4,8 +4,43 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const renderPaymentUI = () => {
-  return null;
-  // When the countdown is complete, the payment UI can go here I guess (Whoever has Payement UI ticket)
+  return (
+    <motion.div
+      className="flex flex-col items-center justify-center py-12"
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+    >
+      <motion.h3
+        className="text-[clamp(1.5rem,3vw,3.5rem)] font-Inter text-[#d9d4c1] font-bold mb-8"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+      >
+        Purchase today to secure your spot!
+      </motion.h3>
+
+      <motion.a
+        href="/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group relative px-12 py-6 text-[clamp(1.1rem,2vw,2rem)] font-bold font-Inter text-white bg-[#E50609] rounded-lg overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-[#E50609]/50"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.4 }}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.98 }}
+      >
+        <span className="relative z-10">PURCHASE TICKETS NOW</span>
+        <motion.div
+          className="absolute inset-0 bg-gradient-to-r from-[#ff0000] to-[#E50609]"
+          initial={{ x: "-100%" }}
+          whileHover={{ x: "0%" }}
+          transition={{ duration: 0.3 }}
+        />
+      </motion.a>
+    </motion.div>
+  );
 };
 
 const TimeUnit = ({ value, label }: { value: string; label: string }) => {
@@ -195,7 +230,7 @@ export default function BuyTicketPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            TICKET SALES OPEN IN
+            TICKET SALES NOW OPEN
           </motion.h2>
           {isMounted ? (
             <Countdown
