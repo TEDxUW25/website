@@ -23,12 +23,6 @@ const MeetTheTeamPage: React.FC = () => {
             experiences. With diverse talents and a commitment to excellence, we
             bring TEDxUW to life — one spark at a time.
           </p>
-          <a
-            href="#"
-            className="underline text-[#E50609] text-sm font-medium hover:opacity-80 transition"
-          >
-            View Bio →
-          </a>
         </motion.div>
 
         {/* Right Image + Handwriting (Responsive & Proportional) */}
@@ -52,7 +46,7 @@ const MeetTheTeamPage: React.FC = () => {
         </div>
       </section>
 
-      <section className="mt-20 max-w-7xl mx-auto">
+      {/* <section className="mt-20 max-w-7xl mx-auto">
         <TeamBio
           imageSrc="/team1.avif"
           title="Curation Team"
@@ -71,8 +65,8 @@ const MeetTheTeamPage: React.FC = () => {
           title="Design Team"
           text="Designing all the posters, banners, screens, slides and visual vibes."
         />
-      </section>
-      <TeamSection/>
+      </section> */}
+      <TeamSection />
     </main>
   );
 };
