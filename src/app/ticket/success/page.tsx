@@ -30,7 +30,7 @@ function TicketSuccessContent() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ sessionId }),
+        body: JSON.stringify({ email: '', sessionId }),
       });
 
       if (response.ok) {
