@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import TeamBio from "@/components/team_bio";
+// import TeamBio from "@/components/team_bio";
 import { motion } from "framer-motion";
 import TeamSection from "@/components/team-section";
 

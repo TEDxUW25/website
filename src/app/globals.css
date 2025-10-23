@@ -4,29 +4,80 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400..700&display=swap');
 
-:root {
-  --background: #000;
-  --foreground: #ffffff;
-  --button-transition: #E50609;
+@layer base {
+  :root {
+    --background: 0 0% 0%; /* black */
+    --foreground: 0 0% 100%; /* white */
+    --card: 0 0% 10%; /* dark grey */
+    --card-foreground: 0 0% 100%;
+    --popover: 0 0% 10%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 0 98% 46%; /* TEDx red */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 65%;
+    --accent: 0 0% 15%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 10%;
+    --input: 0 0% 20%;
+    --ring: 0 98% 46%; /* red focus rings */
+    --radius: 0.5rem;
+    --chart-1: 0 98% 46%; /* TEDx red */
+    --chart-2: 0 0% 100%; /* white */
+    --chart-3: 0 0% 50%; /* grey */
+    --chart-4: 0 0% 30%; /* dark grey */
+    --chart-5: 0 0% 70%; /* light grey */ --sidebar-background: 0 0% 98%; --sidebar-foreground: 240 5.3% 26.1%; --sidebar-primary: 240 5.9% 10%; --sidebar-primary-foreground: 0 0% 98%; --sidebar-accent: 240 4.8% 95.9%; --sidebar-accent-foreground: 240 5.9% 10%; --sidebar-border: 220 13% 91%; --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+  .dark {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+    --card: 0 0% 10%;
+    --card-foreground: 0 0% 100%;
+    --popover: 0 0% 10%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 0 98% 46%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 65%;
+    --accent: 0 0% 15%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 10%;
+    --input: 0 0% 20%;
+    --ring: 0 98% 46%;
+    --chart-1: 0 98% 46%;
+    --chart-2: 0 0% 100%;
+    --chart-3: 0 0% 50%;
+    --chart-4: 0 0% 30%;
+    --chart-5: 0 0% 70%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
 }
 
 :root {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
   --font-sans: 'Inter', sans-serif;
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
   font-family: var(--font-sans);
 }
 
@@ -91,4 +142,15 @@ body::-webkit-scrollbar {
 @keyframes fadeOut {
   0% { opacity: 0.9; transform: scale(1.2); }
   100% { opacity: 0; transform: scale(0.8); }
+}
+
+
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
 }

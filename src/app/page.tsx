@@ -3,7 +3,6 @@
 import HeroSection from "@/components/hero-2";
 import Timeline from "@/components/timeline";
 import Mission from "@/components/mission";
-import LandingPage from "@/components/landingPage";
 import PastTalks from "@/components/pastTalks";
 import Theme from "@/components/theme";
 import WhatIsTed from "@/components/whatIsTed";
@@ -48,9 +47,6 @@ export default function Home() {
       <div className="mt-20"></div>
       <Mission />
       <Timeline />
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <LandingPage />
-      </footer>
       <button
         className="fixed z-50 bottom-5 left-1/2 -translate-x-1/2 sm:bottom-6 sm:right-6 sm:left-auto sm:translate-x-0 bg-[#bd1104] text-white rounded-lg sm:rounded-2xl px-3 py-2 sm:px-7 sm:py-4 text-sm sm:text-lg shadow-lg w-auto whitespace-nowrap"
         style={{ width: "auto" }}

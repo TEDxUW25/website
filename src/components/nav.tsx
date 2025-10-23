@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, type Variants } from "framer-motion";
 
 interface Nav {
@@ -102,7 +103,13 @@ export default function NavBar() {
       >
         <div className="flex justify-between items-center p-6">
           <Link href="/">
-            <img src="logo.svg" width="90px" alt="logo" />
+            <Image 
+              src="/logo.svg" 
+              width={90} 
+              height={40} 
+              alt="TEDxUW Logo" 
+              className="hover:opacity-80 transition-opacity"
+            />
           </Link>
           <button
             onClick={toggleMenu}
@@ -194,7 +201,13 @@ export default function NavBar() {
       >
         <div className="items-start mt-2 md:gap-12 flex flex-row">
           <Link href="/">
-            <img src="logo.svg" width="90px" alt="logo" />
+            <Image 
+              src="/logo.svg" 
+              width={90} 
+              height={40} 
+              alt="TEDxUW Logo" 
+              className="hover:opacity-80 transition-opacity"
+            />
           </Link>
           {navItems.map((n) => (
             <div

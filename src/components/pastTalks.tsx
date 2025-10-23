@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
 import PastTalkCard from "./pastTalkCard";
 import { motion, AnimatePresence } from "framer-motion";
@@ -80,12 +80,12 @@ const PastTalks: React.FC = () => {
   const totalSlides = Math.ceil(pastTalks.length / 3); // 3 cards per slide
 
   // Handle navigation
-  const handleNext = () => {
+  const handleNext = useCallback(() => {
     if (isAnimating) return;
     setIsAnimating(true);
     setDirection(1);
     setCurrentIndex((prevIndex) => (prevIndex + 1) % totalSlides);
-  };
+  }, [isAnimating, totalSlides]);
 
   const handlePrev = () => {
     if (isAnimating) return;
