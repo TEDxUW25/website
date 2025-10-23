@@ -120,7 +120,7 @@ const Theme: React.FC = () => (
           transition={{ duration: 0.7, ease: 'easeOut', delay: 1.8 }}
           viewport={{ once: true }}
         >
-          <span className="text-white text-md sm:text-xl md:text-2xl font-bold">October 6th, 2024</span>
+          <span className="text-white text-md sm:text-xl md:text-2xl font-bold">November 2nd, 2025</span>
           <span className="text-white text-md sm:text-xl md:text-2xl font-bold">1 PM - 4 PM</span>
           <a target="_blank" href="https://calendar.google.com/calendar/event?action=TEMPLATE&amp;tmeid=M2dsazZvMm5rbWZ0cW41Z29tZml0cTE3NTMgdHJpbmhtaW5odGhhbzIxMTkzQG0&amp;tmsrc=trinhminhthao21193%40gmail.com"
           className="hover:underline transition ease-in-out">
