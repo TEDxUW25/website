@@ -48,11 +48,12 @@ export default function Home() {
       <Mission />
       <Timeline />
       <button
-        className="fixed z-50 bottom-5 left-1/2 -translate-x-1/2 sm:bottom-6 sm:right-6 sm:left-auto sm:translate-x-0 bg-[#bd1104] text-white rounded-lg sm:rounded-2xl px-3 py-2 sm:px-7 sm:py-4 text-sm sm:text-lg shadow-lg w-auto whitespace-nowrap"
+        className="fixed z-50 bottom-5 left-1/2 -translate-x-1/2 sm:bottom-6 sm:right-6 sm:left-auto sm:translate-x-0 bg-gradient-to-b from-[#d41408] to-[#bd1104] text-white rounded-[20px] sm:rounded-3xl px-6 py-3 sm:px-7 sm:py-4 text-base sm:text-lg font-semibold shadow-[0_8px_32px_rgb(189,17,4,0.6),0_2px_8px_rgba(0,0,0,0.3)] sm:shadow-[0_6px_24px_rgb(189,17,4,0.35),0_2px_8px_rgba(0,0,0,0.2)] w-auto whitespace-nowrap transition-all duration-300 hover:scale-[1.05] hover:shadow-[0_10px_40px_rgb(189,17,4,0.7),0_4px_12px_rgba(0,0,0,0.4)] active:scale-95 backdrop-blur-xl border border-white/10"
         style={{ width: "auto" }}
         onClick={() => router.push("/buy_ticket")}
       >
-        Buy Tickets &bull; Nov 2nd, 2025 &bull; Humanities Theatre
+        <span className="sm:hidden">Buy Tickets • Nov 2nd</span>
+        <span className="hidden sm:inline">Buy Tickets &bull; Nov 2nd, 2025 &bull; Humanities Theatre</span>
       </button>
     </div>
   );
