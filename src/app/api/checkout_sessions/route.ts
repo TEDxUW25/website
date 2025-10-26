@@ -1,8 +1,14 @@
 import { Stripe } from 'stripe';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
+function getStripe() {
+  if (!process.env.STRIPE_SECRET_KEY) {
+    throw new Error('STRIPE_SECRET_KEY is not configured');
+  }
+  return new Stripe(process.env.STRIPE_SECRET_KEY);
+}
 
 export async function POST(request: Request) {
+  const stripe = getStripe();
   try {
     const { ticketType, attendeeName, accessibilityAccommodations, referralCode } = await request.json();
 
