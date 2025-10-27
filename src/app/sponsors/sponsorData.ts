@@ -10,7 +10,7 @@ export interface SponsorTier {
 }
 export const sponsorData: SponsorTier[] = [
   {
-    tier: "Diamnond",
+    tier: "Diamond",
     sponsors: [
       {
         name: "Mef",
@@ -33,7 +33,7 @@ export const sponsorData: SponsorTier[] = [
     ],
   },
   {
-    tier: "Platimun",
+    tier: "Platinum",
     sponsors: [
       {
         name: "WUSA",
