@@ -121,7 +121,7 @@ const Theme: React.FC = () => (
           viewport={{ once: true }}
         >
           <span className="text-white text-md sm:text-xl md:text-2xl font-bold">November 2nd, 2025</span>
-          <span className="text-white text-md sm:text-xl md:text-2xl font-bold">1 PM - 4 PM</span>
+          <span className="text-white text-md sm:text-xl md:text-2xl font-bold">1 PM - 6 PM</span>
           <a target="_blank" href="https://calendar.google.com/calendar/event?action=TEMPLATE&amp;tmeid=M2dsazZvMm5rbWZ0cW41Z29tZml0cTE3NTMgdHJpbmhtaW5odGhhbzIxMTkzQG0&amp;tmsrc=trinhminhthao21193%40gmail.com"
           className="hover:underline transition ease-in-out">
             <span className="flex flex-cols text-white text-xs sm:text-base opacity-80 mt-2">Calendar 

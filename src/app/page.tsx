@@ -52,8 +52,8 @@ export default function Home() {
         style={{ width: "auto" }}
         onClick={() => router.push("/buy_ticket")}
       >
-        <span className="sm:hidden">Buy Tickets • Nov 2nd</span>
-        <span className="hidden sm:inline">Buy Tickets &bull; Nov 2nd, 2025 &bull; Humanities Theatre</span>
+        <span className="sm:hidden">Buy Tickets • Nov 2nd &bull; 1PM - 6PM</span>
+        <span className="hidden sm:inline">Buy Tickets &bull; Nov 2nd, 2025 &bull; 1PM - 6PM &bull; Humanities Theatre</span>
       </button>
     </div>
   );
