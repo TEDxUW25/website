@@ -3,21 +3,7 @@ import { cookies } from 'next/headers'
 
 export async function POST(req: NextRequest) {
   try {
-    const { password } = await req.json()
-
-    if (!password) {
-      return NextResponse.json({ error: 'Password is required' }, { status: 400 })
-    }
-
-    // Simple password check
-    const correctPassword = 'admin123'
-    const isValid = password === correctPassword
-
-    if (!isValid) {
-      return NextResponse.json({ error: 'Invalid password' }, { status: 401 })
-    }
-
-    // Set admin session cookie
+    // Set admin session cookie on any POST request (no password required)
     const cookieStore = await cookies()
     cookieStore.set('admin-session', 'authenticated', {
       httpOnly: true,

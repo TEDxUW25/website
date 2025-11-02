@@ -3,12 +3,10 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Loader2 } from 'lucide-react';
 
 export default function AdminLoginPage() {
-  const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
@@ -24,7 +22,6 @@ export default function AdminLoginPage() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ password }),
       });
 
       const data = await response.json();
@@ -52,25 +49,10 @@ export default function AdminLoginPage() {
             </div>
           </div>
           <CardTitle className="text-2xl font-bold">Admin Login</CardTitle>
-          <CardDescription>Enter password to access admin dashboard</CardDescription>
+          <CardDescription>Click to access admin dashboard</CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="space-y-2">
-              <label htmlFor="password" className="text-sm font-medium">
-                Password
-              </label>
-              <Input
-                id="password"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Enter admin password"
-                required
-                disabled={loading}
-              />
-            </div>
-
             {error && (
               <div className="bg-destructive/10 border border-destructive/20 text-destructive px-4 py-3 rounded-md text-sm">
                 {error}
@@ -80,7 +62,7 @@ export default function AdminLoginPage() {
             <Button
               type="submit"
               className="w-full"
-              disabled={loading || !password}
+              disabled={loading}
             >
               {loading ? (
                 <>
@@ -88,7 +70,7 @@ export default function AdminLoginPage() {
                   Signing In...
                 </>
               ) : (
-                'Sign In'
+                'Click'
               )}
             </Button>
           </form>
