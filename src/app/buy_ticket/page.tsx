@@ -209,7 +209,7 @@ export default function BuyTicketPage() {
         {/* right side */}
         <div className="col-span-12 md:col-span-9 flex flex-col items-center justify-center text-center overflow-hidden">
           <motion.h2
-            className="text-[clamp(1.6rem,4.75vw,5rem)] font-Inter text-[#d9d4c1] font-extrabold mt-16 lg:mt-10 text-center"
+            className="text-[clamp(1.6rem,4.75vw,5rem)] font-Inter text-[#d9d4c1] font-extrabold mt-8 text-center"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -233,7 +233,8 @@ export default function BuyTicketPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            November 2nd, 2025
+            November 2nd, 2025 <br/>
+            1:00PM - 6:00PM
           </motion.h2>
           <motion.div
             className="text-center text-[#d9d4c1] text-[clamp(0.8rem,1.1vw,2.5rem)] w-[75%] py-5"
