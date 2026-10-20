@@ -1,5 +1,6 @@
 "use client";
-import { motion, useInView } from "framer-motion";
+import SectionHeader from "@/components/section-header";
+import { useInView } from "framer-motion";
 import React, { useRef } from "react";
 import CounterRow from "@/components/counter_row";
 
@@ -23,20 +24,8 @@ const ImpactPage: React.FC = () => {
         trigger={isInView}
       />
 
-      <div className="my-12 w-full max-w-none px-8 sm:px-16">
-        <motion.div
-          initial={{ scale: 0.01, opacity: 0 }}
-          animate={isInView ? { scale: 1, opacity: 1 } : {}}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-          className="flex justify-between text-[#E50609] text-[14vw] md:text-[16vw] font-extrabold leading-none tracking-tight select-none uppercase"
-        >
-          <span>I</span>
-          <span>M</span>
-          <span>P</span>
-          <span>A</span>
-          <span>C</span>
-          <span>T</span>
-        </motion.div>
+      <div className="my-14">
+        <SectionHeader eyebrow="By the numbers" title="Our Impact" />
       </div>
 
       <CounterRow

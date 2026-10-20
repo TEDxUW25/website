@@ -122,7 +122,7 @@ export default function Footer() {
         </div>
         {/* Copyright */}
         <p className="text-center mt-5 w-[70%] text-sm md:text-base xl:text-xs">
-          @ 2025 TEDxUW. All righs reserved. This independent TEDx event is
+          @ 2026 TEDxUW. All righs reserved. This independent TEDx event is
           operated under licence from TED
         </p>
       </div>

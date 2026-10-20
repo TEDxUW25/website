@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import { joinHref, JOIN_FORM_URL } from "@/lib/links";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, type Variants } from "framer-motion";
@@ -171,12 +172,12 @@ export default function NavBar() {
             ))}
             <div className="mt-4 w-full">
               <Link
-                href="/buy_ticket"
+                href={joinHref} {...(JOIN_FORM_URL ? { target: "_blank" } : {})}
                 className="block mb-4"
                 onClick={toggleMenu}
               >
                 <button className="w-full bg-white text-black py-3 rounded-md font-medium">
-                  Buy Tickets
+                  Join the Team
                 </button>
               </Link>
             </div>
@@ -221,11 +222,11 @@ export default function NavBar() {
           ))}
         </div>
         <div className="flex flex-row gap-8">
-          <Link href="/buy_ticket">
+          <Link href={joinHref} {...(JOIN_FORM_URL ? { target: "_blank" } : {})}>
             <button
               className={`rounded-lg border-2 px-4 py-2 bg-white border-white hover:bg-white/10 hover:text-white transition ease-in-out text-black`}
             >
-              Buy Tickets
+              Join the Team
             </button>
           </Link>
         </div>
