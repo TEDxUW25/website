@@ -1,7 +1,12 @@
 import { Resend } from 'resend'
 import { generateQRCodeBuffer } from './qr-code'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+function getResend() {
+  if (!process.env.RESEND_API_KEY) {
+    throw new Error('RESEND_API_KEY is not configured')
+  }
+  return new Resend(process.env.RESEND_API_KEY)
+}
 
 export interface TicketEmailData {
   attendeeName: string
@@ -15,6 +20,7 @@ export interface TicketEmailData {
 }
 
 export async function sendTicketEmail(data: TicketEmailData) {
+  const resend = getResend()
   try {
     // Generate QR code image
     const qrCodeBuffer = await generateQRCodeBuffer(data.qrCodeData)
