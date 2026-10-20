@@ -1,6 +1,6 @@
 "use client";
 import SectionHeader from "@/components/section-header";
-import { motion, useInView } from "framer-motion";
+import { useInView } from "framer-motion";
 import React, { useRef } from "react";
 import CounterRow from "@/components/counter_row";
 
