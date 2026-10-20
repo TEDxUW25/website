@@ -15,10 +15,10 @@ export default function HeroSection() {
 
   // Text content for each section
   const sections: Section[] = [
-    { title: "Step into a world of ideas worth spreading at TEDxUW 2025." },
-    { title: "Discover voices that challenge convention and ignite curiosity." },
-    { title: "Experience talks that connect passion, purpose, and possibility." },
-    { title: "Join the movement. Inspire change. Be part of something bigger." }
+    { title: "TEDxUW is back. Ideas worth spreading return to Waterloo in 2026." },
+    { title: "The club has started again, and we're building this year's team." },
+    { title: "Organizers, designers, creators, and storytellers: we need you." },
+    { title: "Join the team. Help make TEDxUW 2026 happen." }
   ];
 
   // Intersection observer for active section

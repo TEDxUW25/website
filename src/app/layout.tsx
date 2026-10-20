@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "TEDxUW 2025 | Waterloo, ON",
+  title: "TEDxUW 2026 | Waterloo, ON",
   description: "TEDxUW speaker events | TEDx affiliated with University of Waterloo talks",
 };
 

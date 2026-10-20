@@ -9,7 +9,7 @@ export default function AdminDashboard() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold text-foreground">Dashboard</h1>
-          <p className="text-muted-foreground">TEDxUW 2025 ticket management</p>
+          <p className="text-muted-foreground">TEDxUW 2026 ticket management</p>
         </div>
       </div>
       

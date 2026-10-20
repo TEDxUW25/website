@@ -1,35 +1,53 @@
 "use client";
-import React from "react";
+import { joinHref } from "@/lib/links";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { IoTicket } from "react-icons/io5";
 
 const WhatIsTed = () => {
+  // Random values are generated after mount so server and client HTML match.
+  const [particles, setParticles] = useState<
+    { left: number; top: number; dx: number; dy: number; duration: number; delay: number }[]
+  >([]);
+  useEffect(() => {
+    setParticles(
+      Array.from({ length: 15 }, () => ({
+        left: Math.random() * 100,
+        top: Math.random() * 100,
+        dx: Math.random() * 200 - 100,
+        dy: Math.random() * 200 - 100,
+        duration: 4 + Math.random() * 4,
+        delay: Math.random() * 2,
+      }))
+    );
+  }, []);
+
   return (
     <section className="relative w-full bg-black flex flex-col items-center justify-center overflow-hidden min-h-[900px] md:min-h-[1100px] pb-0 pt-8 md:pt-16">
       {/* Moving particles */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         {/* Floating particles */}
-        {Array.from({ length: 15 }).map((_, i) => (
+        {particles.map((p, i) => (
           <motion.div
             key={i}
             className={`absolute w-2 h-2 rounded-full ${
               i % 3 === 0 ? "bg-red-600" : "bg-white"
             } opacity-60`}
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
+              left: `${p.left}%`,
+              top: `${p.top}%`,
             }}
             animate={{
-              x: [0, Math.random() * 200 - 100, 0],
-              y: [0, Math.random() * 200 - 100, 0],
+              x: [0, p.dx, 0],
+              y: [0, p.dy, 0],
               opacity: [0.3, 0.8, 0.3],
               scale: [1, 1.5, 1],
             }}
             transition={{
-              duration: 4 + Math.random() * 4,
+              duration: p.duration,
               repeat: Infinity,
               ease: "easeInOut",
-              delay: Math.random() * 2,
+              delay: p.delay,
             }}
           />
         ))}
@@ -217,6 +235,7 @@ const WhatIsTed = () => {
               whileTap={{ scale: 0.95 }}
               transition={{ type: "spring", stiffness: 300 }}
               className="flex items-center gap-3 focus:outline-none group"
+              onClick={() => window.open(joinHref, joinHref.startsWith("#") ? "_self" : "_blank")}
             >
               <motion.div
                 className="w-9 h-9 bg-white/20 rounded-full flex items-center justify-center"
@@ -226,7 +245,7 @@ const WhatIsTed = () => {
                 <IoTicket />
               </motion.div>
               <span className="text-white text-lg md:text-xl font-bold group-hover:underline">
-                Buy Tickets
+                Join the Team
               </span>
               <motion.div
                 className="w-6 h-6 text-white"

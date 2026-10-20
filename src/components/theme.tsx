@@ -68,7 +68,7 @@ const Theme: React.FC = () => (
     >
       <Image
         src="/2025theme.png"
-        alt="2025 Theme"
+        alt="2026 Theme"
         fill
         className="object-cover object-center"
         priority
@@ -85,7 +85,7 @@ const Theme: React.FC = () => (
           viewport={{ once: true }}
         >
           <span className="text-white text-xl sm:text-2xl md:text-3xl font-semibold tracking-wide">
-            TEDxUW 2025 Talks
+            TEDxUW 2026 Talks
           </span>
         </motion.div>
 

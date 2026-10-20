@@ -36,7 +36,7 @@ const renderPaymentUI = (loading: boolean, handleBuyTicket: (type: 'event' | 'ev
             <li>• Full access to all TEDx talks</li>
             <li>• Live performances and presentations</li>
             <li>• Complimentary lunch and snacks</li>
-            <li>• Exclusive TEDxUW 2025 water bottle</li>
+            <li>• Exclusive TEDxUW 2026 water bottle</li>
             <li>• Networking session with attendees</li>
           </ul>
           <button 

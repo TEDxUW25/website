@@ -1,12 +1,13 @@
 "use client";
 import Year from "@/components/year";
+import SectionHeader from "@/components/section-header";
 
 export default function Timeline() {
   return (
-    <div>
-      <h1 className="font-extrabold tracking-[5vw] text-center text-[15vw] overflow-hidden">
-        Timeline
-      </h1>
+    <div className="bg-black text-white pt-24">
+      <div className="mb-12">
+        <SectionHeader eyebrow="Our history" title="Past Years" />
+      </div>
       <div className="grid grid-cols-3 md:grid-cols-5 text-center">
         <Year
           image="timeline_bg/timeline.svg"

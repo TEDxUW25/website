@@ -87,7 +87,7 @@ export function SectionCards() {
         </CardHeader>
         <CardFooter className="flex-col items-start gap-1 text-sm">
           <div className="text-muted-foreground">
-            TEDxUW 2025
+            TEDxUW 2026
           </div>
         </CardFooter>
       </Card>

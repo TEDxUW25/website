@@ -1,5 +1,6 @@
 "use client";
 
+import SectionHeader from "@/components/section-header";
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
 import PastTalkCard from "./pastTalkCard";
@@ -111,11 +112,9 @@ const PastTalks: React.FC = () => {
 
   return (
     <div>
-      <section className="relative flex flex-col items-center justify-center w-full min-h-[700px] pt-8 md:pt-10 pb-10 bg-white overflow-hidden p-10">
-        {/* White gradient overlay for title readability */}
-        <div className="absolute top-0 left-0 w-full h-32 md:h-40 z-10 bg-gradient-to-b from-white via-white/95 to-transparent pointer-events-none" />
+      <section className="relative flex flex-col items-center justify-center w-full min-h-[700px] pt-8 md:pt-10 pb-16 bg-black overflow-hidden p-10">
         {/* Background image */}
-        <div className="absolute inset-x-0 w-full h-full z-0 flex items-start justify-center pointer-events-none select-none mt-16 md:mt-20 xl:mt-24">
+        <div className="absolute inset-x-0 w-full h-full z-0 opacity-15 flex items-start justify-center pointer-events-none select-none mt-16 md:mt-20 xl:mt-24">
           <Image
             src="/pastTalkBG.png"
             alt="Past Talks Background"
@@ -128,15 +127,7 @@ const PastTalks: React.FC = () => {
         {/* Content overlay */}
         <div className="relative z-10 flex flex-col items-center w-full max-w-6xl mx-auto">
           <div className="h-16 md:h-20 xl:h-24 flex items-center justify-center w-full mb-16 md:mb-24 xl:mb-32">
-            <motion.h2
-              className="text-lg sm:text-xl md:text-2xl xl:text-3xl font-bold text-black text-center w-full"
-              initial={fadeUp.initial}
-              whileInView={fadeUp.whileInView}
-              transition={fadeUp.transition}
-              viewport={{ once: true }}
-            >
-              Past Talks
-            </motion.h2>
+            <SectionHeader eyebrow="From our stages" title="Past Talks" />
           </div>
 
           {/* Carousel */}
@@ -285,7 +276,7 @@ const PastTalks: React.FC = () => {
             transition={{ ...fadeUp.transition, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <div className="text-lg md:text-xl text-black font-bold text-center max-w-fit shadow-sm">
+            <div className="text-lg md:text-xl text-white font-bold text-center max-w-fit shadow-sm">
               and{" "}
               <a
                 href="https://www.youtube.com/@TEDx"
