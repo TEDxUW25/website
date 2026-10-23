@@ -13,31 +13,31 @@ export default function Timeline() {
           image="timeline_bg/timeline.svg"
           yr="2018"
           theme={`Making\nWaves`} // \n for each theme so red box height is consistent as using h-auto
-          desc="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum magnam iusto vitae ducimus ea, quam, amet et magni numquam laboriosam vero at animi dolorem velit nostrum dicta corporis repellendus molestias."
+          desc=""
         />
         <Year
           image="timeline_bg/timeline6.svg"
           yr="2020"
           theme={`Press\nPlay`}
-          desc="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum magnam iusto vitae ducimus ea, quam, amet et magni numquam laboriosam vero at animi dolorem velit nostrum dicta corporis repellendus molestias."
+          desc=""
         />
         <Year
           image="timeline_bg/timeline3.svg"
           yr="2023"
           theme={`From the\nGround Up`}
-          desc="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum magnam iusto vitae ducimus ea, quam, amet et magni numquam laboriosam vero at animi dolorem velit nostrum dicta corporis repellendus molestias."
+          desc=""
         />
         <Year
           image="timeline_bg/timeline1.svg"
           yr="2024"
           theme={`In the Odd\nChance`}
-          desc="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum magnam iusto vitae ducimus ea, quam, amet et magni numquam laboriosam vero at animi dolorem velit nostrum dicta corporis repellendus molestias."
+          desc=""
         />
         <Year
           image="timeline_bg/timeline2.svg"
           yr="2025"
           theme={`Everything\nReimagined`}
-          desc="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum magnam iusto vitae ducimus ea, quam, amet et magni numquam laboriosam vero at animi dolorem velit nostrum dicta corporis repellendus molestias."
+          desc=""
         />
         <div className="md:hidden">
           <Year
