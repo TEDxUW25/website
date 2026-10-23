@@ -51,7 +51,7 @@ export default function Mission() {
                 <br />
                 To convene the University of Waterloo community and amplify
                 Ideas Worth Spreading by creating inclusive platforms where
-                people from diverse backgrounds, our changemakers, hare their
+                people from diverse backgrounds, our changemakers, share their
                 ideas, achievements, and stories with the world, sparking
                 conversations that lead to impact
                 <br />
